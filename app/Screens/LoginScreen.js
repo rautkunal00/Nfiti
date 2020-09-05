@@ -9,6 +9,7 @@ import SubmitButton from '../Components/Form/SubmitButton';
 import AppFormContainer from '../Components/Form/AppFormContainer';
 import AuthBackgroundImage from '../Components/AuthBackgroundImage';
 import AlereadyHaveAccount from '../Components/AlereadyHaveAccount';
+import {auth} from '../authentication/firebaseService';
 // validation using Yup
 const validationSchema = Yup.object().shape({
     email:Yup.string().required().label('EmailOrPhone'),
@@ -18,19 +19,14 @@ const validationSchema = Yup.object().shape({
 export default function LoginScreen({font,navigation}) {
     const [keyBoard,setKeyBoard] = useState(false);
         const handleSubmit = (values,{resetForm}) => {
-            // fetch('http://localhost:5000/nfiti-e002e/us-central1/app/users/login', {
-            // method: 'POST',
-            // headers: {
-            //     Accept: 'application/json',
-            //     'Content-Type': 'application/json'
-            // },
-            //     body: JSON.stringify({
-            //         email: values.email,
-            //         password: values.password
-            //     })
-            // })
-            // .then((res) => res.json());
-            resetForm({values:''});
+            const {email, password } = values;
+                auth().signInWithEmailAndPassword(email, password)
+                .then((user)=>{
+                    navigation.navigate('passwordChangedScreen')
+                    //resetForm({values:''});
+                }
+                )
+                .catch((err)=>console.log(err)) 
         }
     return (
         <>      
@@ -88,9 +84,6 @@ export default function LoginScreen({font,navigation}) {
                             screenText="SIGN UP"
                             onPress={()=>navigation.navigate('Signup')}
                         />
-                        <TouchableWithoutFeedback onPress={()=>navigation.navigate("loginOtp")}>
-                            <Text>OTP</Text>
-                        </TouchableWithoutFeedback>
                     </View>
                 </ScrollView>
             </CustomContainer>

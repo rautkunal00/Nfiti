@@ -12,7 +12,12 @@ import AuthBackgroundImage from '../Components/AuthBackgroundImage';
 const validationSchema = Yup.object().shape({
     number:Yup.number().required().label('Password')
 })
+const handleSubmit = (values,navigation) => {
+    console.log(values)
+    navigation.navigate('forgotPasswordOtpScreen')
+}
 const ForgotYourPassword = ({navigation}) => {
+    
     return (
         <>      
             <CustomContainer >
@@ -27,21 +32,17 @@ const ForgotYourPassword = ({navigation}) => {
                         <Text style={styles.pinNote}>Do not worry. We'll send pin on your Phone no.</Text>
                         <AppFormContainer
                             initialValues={{number:''}}
-                            onSubmit={(values,{resetForm}) => {
-                                console.log(values)
-                                //navigation.navigate('forgotPasswordOtpScreen')
-                                // console.log(values)
-                                // resetForm({values:''})
-                            } }
+                            onSubmit={(values) => handleSubmit(values,navigation)  }
                             validationSchema={validationSchema}
                         >
                             <AppFormField 
                                 style={{borderBottomWidth:1.5,borderBottomColor:Colors.lightGrey,flex:1,paddingBottom:10}}
                                 icon="phone"
                                 autoCorrect={false}
-                                keyBoardType="number"
+                                keyboardType="numeric"
+                                maxLength={10}
                                 autoCapitalize='none'
-                                name="Number"
+                                name="number"
                                 placeholder="Enter Your Phone Number"
                                 placeholderTextColor="grey"
                                 theme={{colors: {primary: Colors.darkGrey, underlineColor: 'transparent'}}}

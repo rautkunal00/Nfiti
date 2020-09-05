@@ -21,7 +21,7 @@ export default class ForgotPasswordOtpScreen extends Component {
         if(this.state.pin1 != '' && this.state.pin2 != '' && this.state.pin3 != '' && this.state.pin4 != ''){
             console.log(this.state)
             this.setState({pin1:'',pin2:'',pin3:'',pin4:''})
-            this.props.navigation.navigate('ForgotYourPassword')
+            this.props.navigation.navigate('forgotPassword')
         }
     }
     componentDidMount(){

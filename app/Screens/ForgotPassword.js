@@ -8,12 +8,17 @@ import AppFormField from '../Components/Form/AppFormField';
 import SubmitButton from '../Components/Form/SubmitButton';
 import AppFormContainer from '../Components/Form/AppFormContainer';
 import AuthBackgroundImage from '../Components/AuthBackgroundImage';
+import { NavigationContainer } from '@react-navigation/native';
 
 const validationSchema = Yup.object().shape({
     password:Yup.string().required().min(4).label('Password'),
     confirmPassword:Yup.string().required().min(4).label('ConfirmPassword')
 })
-const ForgotPassword = () => {
+const handleSubmit = (values,navigation) => {
+    console.log(values)
+    navigation.navigate('passwordChangedScreen')
+}
+const ForgotPassword = ({navigation}) => {
     return (
         <>      
             <CustomContainer >
@@ -25,10 +30,7 @@ const ForgotPassword = () => {
                     <View style={[styles.loginContainer]}>
                         <AppFormContainer
                             initialValues={{password:'',confirmPassword:''}}
-                            onSubmit={(values,{resetForm}) => {
-                                console.log(values)
-                                resetForm({values:''})
-                            } }
+                            onSubmit={(values) => handleSubmit(values,navigation) }
                             validationSchema={validationSchema}
                         >
                             <AppFormField 
@@ -49,7 +51,7 @@ const ForgotPassword = () => {
                                 secureTextEntry
                                 autoCapitalize='none'
                                 name="confirmPassword"
-                                onFocus={()=>setKeyBoard(true)}
+                                // onFocus={()=>setKeyBoard(true)}
                                 placeholder="Confirm New Password"
                                 placeholderTextColor="grey"
                                 theme={{colors: {primary: Colors.darkGrey, underlineColor: 'transparent'}}}
