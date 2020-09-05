@@ -15,19 +15,20 @@ const validationSchema = Yup.object().shape({
     email:Yup.string().required().label('EmailOrPhone'),
     password:Yup.string().required().min(4).label('Password')
 })
+const handleSubmit = (values,navigation) => {
+    const {email, password } = values;
+        auth().signInWithEmailAndPassword(email, password)
+        .then((user)=>{
+            navigation.navigate('passwordChangedScreen')
+            //resetForm({values:''});
+        }
+        )
+        .catch((err)=>console.log(err)) 
+}
 
 export default function LoginScreen({font,navigation}) {
     const [keyBoard,setKeyBoard] = useState(false);
-        const handleSubmit = (values,{resetForm}) => {
-            const {email, password } = values;
-                auth().signInWithEmailAndPassword(email, password)
-                .then((user)=>{
-                    navigation.navigate('passwordChangedScreen')
-                    //resetForm({values:''});
-                }
-                )
-                .catch((err)=>console.log(err)) 
-        }
+       
     return (
         <>      
             <CustomContainer >
@@ -43,10 +44,7 @@ export default function LoginScreen({font,navigation}) {
                     <View style={[styles.loginContainer]}>
                         <AppFormContainer
                             initialValues={{email:'',password:''}}
-                            onSubmit={(values,{resetForm}) => {
-                                console.log(values)
-                                resetForm({values:''})
-                            } }
+                            onSubmit={(values,{resetForm}) => handleSubmit(values,navigation) }
                             validationSchema={validationSchema}
                         >
                             <AppFormField 

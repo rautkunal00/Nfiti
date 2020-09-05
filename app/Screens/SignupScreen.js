@@ -18,28 +18,25 @@ const validationSchema = Yup.object().shape({
 })
 
 const handleSubmit = (values,navigation) => {
-    // values.phone = '+91'+values.phone;
     console.log(values);
-    navigation.navigate('loginSuccess')
-//     fetch('https://us-central1-nfiti-e002e.cloudfunctions.net/app/users/signup', {
-//     method: 'POST',
-//     headers: {
-//         Accept: 'application/json',
-//         'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//         email:values.email,
-//         password:values.password,
-//         phoneNumber:'+91'+values.phone,
-//         displayName:values.username
-//     })
-// })
-// .then((token)=>{
-//     navigation.navigate('passwordChangedScreen')
-//     console.log(token)
-//     //resetForm({values:''});
-// })
-// .catch(err=>console.log(err))
+    fetch('https://us-central1-nfiti-e002e.cloudfunctions.net/app/users/signup', {
+    method: 'POST',
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        email:values.email,
+        password:values.password,
+        phoneNumber:'+91'+values.phone,
+        displayName:values.username
+    })
+})
+.then((token)=>{
+    navigation.navigate('loginOtp')
+    //resetForm({values:''});
+})
+.catch(err=>console.log(err))
 
 }
 const SignupScreen = ({navigation}) => {
@@ -57,7 +54,7 @@ const SignupScreen = ({navigation}) => {
                     <View style={styles.signupContainer}>
                         <AppFormContainer
                             initialValues={{username:'',email:'',password:'',phone:''}}
-                            onSubmit={(values,navigation) => handleSubmit(values,navigation) }
+                            onSubmit={(values) => handleSubmit(values,navigation) }
                             validationSchema={validationSchema}
                         >
                             <AppFormField
