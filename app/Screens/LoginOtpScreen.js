@@ -17,10 +17,10 @@ export default class LoginOtpScreen extends Component {
             error: false
         }
     }
-    submitOtp = (navigation) => {
+    submitOtp = () => {
         if (this.state.pin1 != '' && this.state.pin2 != '' && this.state.pin3 != '' && this.state.pin4 != '') {
             var OTP = "" + this.state.pin1 + this.state.pin2 + this.state.pin3 + this.state.pin4 + ""
-            console.log(this.state)
+            console.log(this.props)
             fetch('https://us-central1-nfiti-e002e.cloudfunctions.net/app/users/otp', {
                 method: 'POST',
                 headers: {
@@ -31,10 +31,13 @@ export default class LoginOtpScreen extends Component {
             })
              .then(() => {
                     this.setState({ pin1: '', pin2: '', pin3: '', pin4: '' })
-                    navigation.navigate('HomeScreen')
+                    this.props.navigation.navigate('AccountVerified')
                     //resetForm({values:''});
                 })
-                .catch(err => console.log(err))
+                .catch((err) => {
+                    console.log(err)
+                    this.state.error = err;
+                })
         }
     }
     componentDidMount() {
@@ -118,7 +121,7 @@ export default class LoginOtpScreen extends Component {
                         <View style={{ height: 40 }}>
                             {this.state.error && <Text style={{ textAlign: 'center', color: 'red' }}>Please Enter Valid details</Text>}
                         </View>
-                        <TouchableOpacity onPress={() => this.submitOtp(navigation)} style={styles.button}>
+                        <TouchableOpacity onPress={() => this.submitOtp()} style={styles.button}>
                             <Text style={styles.buttonText}>VERIFY</Text>
                         </TouchableOpacity>
                         <View style={{ marginTop: 30 }}>

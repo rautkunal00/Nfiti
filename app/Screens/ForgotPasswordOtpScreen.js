@@ -18,10 +18,23 @@ export default class ForgotPasswordOtpScreen extends Component {
         }
     }
     submitOtp = () => {
-        if(this.state.pin1 != '' && this.state.pin2 != '' && this.state.pin3 != '' && this.state.pin4 != ''){
-            console.log(this.state)
-            this.setState({pin1:'',pin2:'',pin3:'',pin4:''})
-            this.props.navigation.navigate('forgotPassword')
+        if (this.state.pin1 != '' && this.state.pin2 != '' && this.state.pin3 != '' && this.state.pin4 != '') {
+            var OTP = "" + this.state.pin1 + this.state.pin2 + this.state.pin3 + this.state.pin4 + ""
+            console.log(this.props)
+            fetch('https://us-central1-nfiti-e002e.cloudfunctions.net/app/users/otp', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ OTP: OTP })
+            })
+            .then(res => res.status == 200 ? this.props.navigation.navigate('forgotPassword') : res.json())
+            .then((data) => { data ?  this.setState({error : data.msg}) : "" })
+            .catch((err) => {
+                console.log(err)
+                this.setState({error : err});
+            })
         }
     }
     componentDidMount(){
@@ -34,9 +47,8 @@ export default class ForgotPasswordOtpScreen extends Component {
                 <CustomContainer style={{flex:1}}>
                     <AuthBackgroundImage source={require('../../assets/09.png')} 
                         Heightstyle={{height:250}}
-                        subHeading="Two Step Verification"
                         subHeadingStyle="medium"
-                        lineStyle={true}
+                        lineStyle={false}
                     />
                     <View style={styles.contentContainer}>
                         <Text style={styles.verficationHeading}>Verification Code</Text>

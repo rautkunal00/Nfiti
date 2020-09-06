@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { View, ScrollView,StyleSheet,Text} from 'react-native'
 
 import CustomContainer from '../Components/CustomContainer';
@@ -9,15 +9,41 @@ import SubmitButton from '../Components/Form/SubmitButton';
 import AppFormContainer from '../Components/Form/AppFormContainer';
 import AuthBackgroundImage from '../Components/AuthBackgroundImage';
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 const validationSchema = Yup.object().shape({
     number:Yup.number().required().label('Password')
 })
-const handleSubmit = (values,navigation) => {
+const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('@storage_Key', value)
+    } catch (err) {
+        this.state.error = err;
+    }
+  }
+
+const handleSubmit = (values,navigation,seterror) => {
+    values.number = "+91" + values.number;
+    storeData(values.number)
     console.log(values)
-    navigation.navigate('forgotPasswordOtpScreen')
+    fetch('https://us-central1-nfiti-e002e.cloudfunctions.net/app/users/forgetPassword', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ phoneNumber: values.number })
+            })
+            .then(res => res.status == 200 ? navigation.navigate('forgotPasswordOtpScreen') : res.json())
+            .then((data) => { data ?  seterror(data.msg) : "" })
+            .catch((err) => {
+                console.log(err)
+                seterror(err);
+            })
 }
 const ForgotYourPassword = ({navigation}) => {
     
+    const [error,seterror] = useState(false);
     return (
         <>      
             <CustomContainer >
@@ -28,11 +54,14 @@ const ForgotYourPassword = ({navigation}) => {
                         subHeading="Forgot Your Password ?"
                         subHeadingStyle="medium"
                     />
+                    <View style={{ height: 40 }}>
+                            {error && <Text style={{ textAlign: 'center', color: 'red' }}>{error}</Text>}
+                        </View>
                     <View style={[styles.loginContainer]}>
                         <Text style={styles.pinNote}>Do not worry. We'll send pin on your Phone no.</Text>
                         <AppFormContainer
                             initialValues={{number:''}}
-                            onSubmit={(values) => handleSubmit(values,navigation)  }
+                            onSubmit={(values) => handleSubmit(values,navigation,seterror)  }
                             validationSchema={validationSchema}
                         >
                             <AppFormField 

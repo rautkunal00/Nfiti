@@ -1,5 +1,5 @@
-import React,{useState} from 'react'
-import { StyleSheet, Text, View, ScrollView, TouchableWithoutFeedback} from 'react-native';
+import React, { useState } from 'react'
+import { StyleSheet, Text, View, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import CustomContainer from '../Components/CustomContainer';
 import * as Yup from 'yup';
 // Icon
@@ -9,46 +9,52 @@ import SubmitButton from '../Components/Form/SubmitButton';
 import AppFormContainer from '../Components/Form/AppFormContainer';
 import AuthBackgroundImage from '../Components/AuthBackgroundImage';
 import AlereadyHaveAccount from '../Components/AlereadyHaveAccount';
-import {auth} from '../authentication/firebaseService';
+import { auth } from '../authentication/firebaseService';
 // validation using Yup
 const validationSchema = Yup.object().shape({
-    email:Yup.string().required().label('EmailOrPhone'),
-    password:Yup.string().required().min(4).label('Password')
+    email: Yup.string().required().label('EmailOrPhone'),
+    password: Yup.string().required().min(4).label('Password')
 })
-const handleSubmit = (values,navigation) => {
-    const {email, password } = values;
-        auth().signInWithEmailAndPassword(email, password)
-        .then((user)=>{
+const handleSubmit = (values, navigation,seterror) => {
+    const { email, password } = values;
+    auth().signInWithEmailAndPassword(email, password)
+        .then((user) => {
             navigation.navigate('passwordChangedScreen')
             //resetForm({values:''});
-        }
-        )
-        .catch((err)=>console.log(err)) 
+        })
+        .catch((err) => {
+            console.log(err)
+            seterror(""+err);
+        })
 }
 
-export default function LoginScreen({font,navigation}) {
-    const [keyBoard,setKeyBoard] = useState(false);
-       
+export default function LoginScreen({ font, navigation }) {
+    const [keyBoard, setKeyBoard] = useState(false);
+    const [error, seterror] = useState(false);
+
     return (
-        <>      
+        <>
             <CustomContainer >
                 <ScrollView>
-                    <AuthBackgroundImage source={require('../../assets/09.png')} 
-                        Heightstyle={{height:250}} 
+                    <AuthBackgroundImage source={require('../../assets/09.png')}
+                        Heightstyle={{ height: 250 }}
                         heading="Welcome"
                         headingstyle="bold"
                         subHeading="Company Name"
                         subHeadingStyle="medium"
                         lineStyle={true}
                     />
+                      <View style={{ height: 40 }}>
+                            {error && <Text style={{ textAlign: 'center', color: 'red' }}>{error}</Text>}
+                        </View>
                     <View style={[styles.loginContainer]}>
                         <AppFormContainer
-                            initialValues={{email:'',password:''}}
-                            onSubmit={(values,{resetForm}) => handleSubmit(values,navigation) }
+                            initialValues={{ email: '', password: '' }}
+                            onSubmit={(values) => handleSubmit(values, navigation,seterror)}
                             validationSchema={validationSchema}
                         >
-                            <AppFormField 
-                                style={{borderBottomWidth:1.5,borderBottomColor:Colors.lightGrey,flex:1,paddingBottom:10}}
+                            <AppFormField
+                                style={{ borderBottomWidth: 1.5, borderBottomColor: Colors.lightGrey, flex: 1, paddingBottom: 10 }}
                                 icon="user"
                                 autoCorrect={false}
                                 autoCapitalize='none'
@@ -56,31 +62,31 @@ export default function LoginScreen({font,navigation}) {
                                 name="email"
                                 placeholder="Phone no / Email ID"
                                 placeholderTextColor="grey"
-                                theme={{colors: {primary: Colors.darkGrey, underlineColor: 'transparent'}}}
+                                theme={{ colors: { primary: Colors.darkGrey, underlineColor: 'transparent' } }}
                             />
-                            <AppFormField 
+                            <AppFormField
                                 icon="lock"
-                                style={{borderBottomWidth:1.5,borderBottomColor:Colors.lightGrey,flex:1,paddingBottom:10}}
+                                style={{ borderBottomWidth: 1.5, borderBottomColor: Colors.lightGrey, flex: 1, paddingBottom: 10 }}
                                 autoCorrect={false}
                                 secureTextEntry
                                 autoCapitalize='none'
                                 name="password"
-                                onFocus={()=>setKeyBoard(true)}
+                                onFocus={() => setKeyBoard(true)}
                                 placeholder="Password"
                                 placeholderTextColor="grey"
-                                theme={{colors: {primary: Colors.darkGrey, underlineColor: 'transparent'}}}
+                                theme={{ colors: { primary: Colors.darkGrey, underlineColor: 'transparent' } }}
                             />
                             <SubmitButton title="SIGN IN" />
                         </AppFormContainer>
-                        <TouchableWithoutFeedback onPress={()=>navigation.navigate('forgotYourPassword')}>
+                        <TouchableWithoutFeedback onPress={() => navigation.navigate('forgotYourPassword')}>
                             <View style={styles.forgotPasswordContainer}>
-                                <Text style={[styles.forgotPasswordText,{fontFamily: "semiBold"}]}>Forgot password?</Text>
+                                <Text style={[styles.forgotPasswordText, { fontFamily: "semiBold" }]}>Forgot password?</Text>
                             </View>
                         </TouchableWithoutFeedback>
-                        <AlereadyHaveAccount 
+                        <AlereadyHaveAccount
                             accountText="Don’t have an account?"
                             screenText="SIGN UP"
-                            onPress={()=>navigation.navigate('Signup')}
+                            onPress={() => navigation.navigate('Signup')}
                         />
                     </View>
                 </ScrollView>
@@ -89,15 +95,15 @@ export default function LoginScreen({font,navigation}) {
     )
 }
 const styles = StyleSheet.create({
-    loginContainer:{
-        paddingTop:40,
-        paddingHorizontal:24
+    loginContainer: {
+        paddingTop: 40,
+        paddingHorizontal: 24
     },
-    forgotPasswordText:{
-        textAlign:'right',
-        fontSize:14,
-        color:Colors.black,
-        opacity:0.4
+    forgotPasswordText: {
+        textAlign: 'right',
+        fontSize: 14,
+        color: Colors.black,
+        opacity: 0.4
     },
-    
+
 })

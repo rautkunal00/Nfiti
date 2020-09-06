@@ -9,6 +9,7 @@ import LoginOtpScreen from '../Screens/LoginOtpScreen'
 import PasswordChangedScreen from '../Screens/PasswordChangedScreen';
 import ForgotPassword from '../Screens/ForgotPassword';
 import HomeScreen from '../Screens/HomeScreen';
+import AccountVerified from '../Screens/AccountVerified';
 const Stack = createStackNavigator();
 const AuthNavigation = () => {
     return (
@@ -20,8 +21,9 @@ const AuthNavigation = () => {
             <Stack.Screen name="Signup" component={SignupScreen} options={{headerTransparent:true,headerTitle:null,headerTintColor: '#fff'}}/>
             <Stack.Screen name="loginOtp" component={LoginOtpScreen} options={{headerTransparent:true,headerTitle:null,headerTintColor: '#fff'}}/>
             <Stack.Screen name="forgotPassword" component={ForgotPassword} options={{headerTransparent:true,headerTitle:null,headerTintColor: '#fff'}}/>
-            <Stack.Screen name="passwordChangedScreen" component={PasswordChangedScreen} options={{headerTransparent:true,headerTitle:null,headerTintColor: '#fff'}}/>
-            <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerTransparent:true,headerTitle:null,headerTintColor: '#fff'}}/>
+            <Stack.Screen name="passwordChangedScreen" component={PasswordChangedScreen} options={{headerShown:false,headerTransparent:true,headerTitle:null,headerTintColor: '#fff'}}/>
+            <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown:false,headerTransparent:true,headerTitle:null,headerTintColor: '#fff'}}/>
+            <Stack.Screen name="AccountVerified" component={AccountVerified} options={{headerShown:false,headerTransparent:true,headerTitle:null,headerTintColor: '#fff'}}/>
         </Stack.Navigator>
     )
 }

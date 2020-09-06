@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, ScrollView,StyleSheet} from 'react-native'
+import React,{useState} from 'react'
+import { View, ScrollView,StyleSheet ,Text} from 'react-native'
 
 import CustomContainer from '../Components/CustomContainer';
 import * as Yup from 'yup';
@@ -10,15 +10,41 @@ import AppFormContainer from '../Components/Form/AppFormContainer';
 import AuthBackgroundImage from '../Components/AuthBackgroundImage';
 import { NavigationContainer } from '@react-navigation/native';
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 const validationSchema = Yup.object().shape({
     password:Yup.string().required().min(4).label('Password'),
-    confirmPassword:Yup.string().required().min(4).label('ConfirmPassword')
+    confirmPassword:Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
 })
-const handleSubmit = (values,navigation) => {
+
+const handleSubmit = (values,navigation,seterror) => {
+        AsyncStorage.getItem('@storage_Key')
+        .then(value => {
+            values.phoneNumber = value.phoneNumber
+            console.log(value)
+        })
+        .catch(err => console.log(err))
+
     console.log(values)
-    navigation.navigate('passwordChangedScreen')
+    fetch('https://us-central1-nfiti-e002e.cloudfunctions.net/app/users/updatePassword', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+    })
+    .then(res => res.status == 200 ? navigation.navigate('passwordChangedScreen') : res.json())
+    .then((data) => { data ?  seterror(data.msg) : "" })
+    .catch((err) => {
+        console.log(err)
+        seterror(err);
+    })
+    
 }
 const ForgotPassword = ({navigation}) => {
+    
+    const [error,seterror] = useState(false);
     return (
         <>      
             <CustomContainer >
@@ -27,10 +53,13 @@ const ForgotPassword = ({navigation}) => {
                         Heightstyle={{height:250}} 
                         lineStyle={false}
                     />
+                    <View style={{ height: 40 }}>
+                            {error && <Text style={{ textAlign: 'center', color: 'red' }}>{error}</Text>}
+                        </View>
                     <View style={[styles.loginContainer]}>
                         <AppFormContainer
                             initialValues={{password:'',confirmPassword:''}}
-                            onSubmit={(values) => handleSubmit(values,navigation) }
+                            onSubmit={(values) => handleSubmit(values,navigation,seterror) }
                             validationSchema={validationSchema}
                         >
                             <AppFormField 
@@ -51,7 +80,6 @@ const ForgotPassword = ({navigation}) => {
                                 secureTextEntry
                                 autoCapitalize='none'
                                 name="confirmPassword"
-                                // onFocus={()=>setKeyBoard(true)}
                                 placeholder="Confirm New Password"
                                 placeholderTextColor="grey"
                                 theme={{colors: {primary: Colors.darkGrey, underlineColor: 'transparent'}}}
