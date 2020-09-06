@@ -10,22 +10,53 @@ import AppFormContainer from '../Components/Form/AppFormContainer';
 import AuthBackgroundImage from '../Components/AuthBackgroundImage';
 import AlereadyHaveAccount from '../Components/AlereadyHaveAccount';
 import { auth } from '../authentication/firebaseService';
+
+import AsyncStorage from '@react-native-community/async-storage';
+
 // validation using Yup
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().label('EmailOrPhone'),
     password: Yup.string().required().min(4).label('Password')
 })
-const handleSubmit = (values, navigation,seterror) => {
+
+const storeTOKEN = async (value) => {
+    try {
+        await AsyncStorage.setItem('@storage_TOKEN', value)
+        console.log(value)
+    } catch (err) {
+        this.state.error = err;
+    }
+}
+
+
+const handleSubmit = (values, navigation, seterror) => {
     const { email, password } = values;
     auth().signInWithEmailAndPassword(email, password)
         .then((user) => {
-            navigation.navigate('passwordChangedScreen')
-            //resetForm({values:''});
+            fetch('https://us-central1-nfiti-e002e.cloudfunctions.net/app/users/getToken', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email })
+            })
+            .then(res => res.json() )
+            .then(res => {
+                AsyncStorage.setItem('@storage_TOKEN', res.TOKEN)
+                .then(() => {
+                    navigation.navigate('HomeScreen')
+                })
+                .catch((err) => {
+                    console.log(err)
+                    seterror("" + err);
+                })
+            })
+            .catch((err) => { console.log(err); seterror(err);})
+
         })
-        .catch((err) => {
-            console.log(err)
-            seterror(""+err);
-        })
+        .catch((err) => { console.log(err); seterror("" + err); })
+
 }
 
 export default function LoginScreen({ font, navigation }) {
@@ -44,13 +75,13 @@ export default function LoginScreen({ font, navigation }) {
                         subHeadingStyle="medium"
                         lineStyle={true}
                     />
-                      <View style={{ height: 40 }}>
-                            {error && <Text style={{ textAlign: 'center', color: 'red' }}>{error}</Text>}
-                        </View>
+                    <View style={{ height: 40 }}>
+                        {error && <Text style={{ textAlign: 'center', color: 'red' }}>{error}</Text>}
+                    </View>
                     <View style={[styles.loginContainer]}>
                         <AppFormContainer
                             initialValues={{ email: '', password: '' }}
-                            onSubmit={(values) => handleSubmit(values, navigation,seterror)}
+                            onSubmit={(values) => handleSubmit(values, navigation, seterror)}
                             validationSchema={validationSchema}
                         >
                             <AppFormField

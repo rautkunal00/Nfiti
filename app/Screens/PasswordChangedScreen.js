@@ -6,7 +6,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Colors from '../Colors/Colors'
 
 const handleDone = (navigation) => {
-    navigation.navigate('HomeScreen')
+    navigation.navigate('Login')
 }
 const PasswordChangedScreen = ({navigation}) => {
     return (
