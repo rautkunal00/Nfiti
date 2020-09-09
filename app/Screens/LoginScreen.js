@@ -75,7 +75,7 @@ export default function LoginScreen({ font, navigation }) {
                         subHeadingStyle="medium"
                         lineStyle={true}
                     />
-                    <View style={{ height: 40 }}>
+                    <View style={{marginTop:15}}>
                         {error && <Text style={{ textAlign: 'center', color: 'red' }}>{error}</Text>}
                     </View>
                     <View style={[styles.loginContainer]}>
@@ -127,7 +127,7 @@ export default function LoginScreen({ font, navigation }) {
 }
 const styles = StyleSheet.create({
     loginContainer: {
-        paddingTop: 40,
+        paddingTop: 25,
         paddingHorizontal: 24
     },
     forgotPasswordText: {
