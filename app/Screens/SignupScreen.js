@@ -34,7 +34,9 @@ const handleSubmit = (values, navigation, seterror) => {
         })
     })
         .then(res => res.status == 200 ? navigation.navigate('loginOtp') : res.json())
-        .then((data) => { console.log(data); seterror(data.msg);})
+        .then((data) => { 
+            console.log(data); //seterror(data.msg);
+        })
         .catch((err) => {
             console.log(err)
             seterror(err);

@@ -9,6 +9,7 @@ import SubmitButton from '../Components/Form/SubmitButton';
 import AppFormContainer from '../Components/Form/AppFormContainer';
 import AuthBackgroundImage from '../Components/AuthBackgroundImage';
 import AlereadyHaveAccount from '../Components/AlereadyHaveAccount';
+import BackendError from '../Components/BackendError';
 import { auth } from '../authentication/firebaseService';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -75,9 +76,7 @@ export default function LoginScreen({ font, navigation }) {
                         subHeadingStyle="medium"
                         lineStyle={true}
                     />
-                    <View style={{marginTop:15}}>
-                        {error && <Text style={{ textAlign: 'center', color: 'red' }}>{error}</Text>}
-                    </View>
+                    <BackendError error={error} />
                     <View style={[styles.loginContainer]}>
                         <AppFormContainer
                             initialValues={{ email: '', password: '' }}
