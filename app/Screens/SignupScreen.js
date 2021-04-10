@@ -9,6 +9,7 @@ import SubmitButton from '../Components/Form/SubmitButton';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Colors from '../Colors/Colors';
 import AlereadyHaveAccount from '../Components/AlereadyHaveAccount';
+import BackendError from '../Components/BackendError';
 // validation using Yup
 const validationSchema = Yup.object().shape({
     username: Yup.string().required().label('Username'),
@@ -34,8 +35,8 @@ const handleSubmit = (values, navigation, seterror) => {
     })
         .then(res => res.status == 200 ? navigation.navigate('loginOtp') : res.json())
         .then((data) => { 
-            console.log(data); 
-            data.msg ? seterror(data.msg) : "" ;
+            console.log(data); //seterror(data.msg);
+        })
         })
         .catch((err) => {
             console.log(err)
@@ -56,9 +57,7 @@ const SignupScreen = ({ navigation }) => {
                         subHeading="Create New Account"
                         lineStyle={false}
                     />
-                   <View style={{ height: 40, padding: 10}}>
-                            {error && <Text style={{ textAlign: 'center', color: 'red' }}>{error}</Text>}
-                        </View>
+                    <BackendError error={error} />
                     <View style={styles.signupContainer}>
                         <AppFormContainer
                             initialValues={{ username: '', email: '', password: '', phone: '' }}
@@ -143,7 +142,7 @@ export default SignupScreen
 
 const styles = StyleSheet.create({
     signupContainer: {
-        paddingTop: 40,
+        paddingTop: 25,
         paddingHorizontal: 24,
         backgroundColor: '#FFFFFF'
     }
