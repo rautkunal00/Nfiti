@@ -37,7 +37,6 @@ const handleSubmit = (values, navigation, seterror) => {
         .then((data) => { 
             console.log(data); //seterror(data.msg);
         })
-        })
         .catch((err) => {
             console.log(err)
             seterror(err);
