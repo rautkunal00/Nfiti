@@ -33,7 +33,10 @@ const handleSubmit = (values, navigation, seterror) => {
         })
     })
         .then(res => res.status == 200 ? navigation.navigate('loginOtp') : res.json())
-        .then((data) => { console.log(data); seterror(data.msg);})
+        .then((data) => { 
+            console.log(data); 
+            data.msg ? seterror(data.msg) : "" ;
+        })
         .catch((err) => {
             console.log(err)
             seterror(err);
@@ -53,7 +56,7 @@ const SignupScreen = ({ navigation }) => {
                         subHeading="Create New Account"
                         lineStyle={false}
                     />
-                   <View style={{ height: 40 }}>
+                   <View style={{ height: 40, padding: 10}}>
                             {error && <Text style={{ textAlign: 'center', color: 'red' }}>{error}</Text>}
                         </View>
                     <View style={styles.signupContainer}>
