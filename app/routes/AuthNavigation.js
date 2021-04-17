@@ -9,6 +9,7 @@ import LoginOtpScreen from '../Screens/LoginOtpScreen'
 import PasswordChangedScreen from '../Screens/PasswordChangedScreen';
 import ForgotPassword from '../Screens/ForgotPassword';
 import HomeScreen from '../Screens/HomeScreen';
+import ProfileScreen from '../Screens/ProfileScreen';
 import AccountVerified from '../Screens/AccountVerified';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -30,11 +31,13 @@ const AuthNavigation = () => {
                 <Stack.Screen name="forgotPassword" component={ForgotPassword} options={{ headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
                 <Stack.Screen name="passwordChangedScreen" component={PasswordChangedScreen} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
                 <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
+                <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
                 <Stack.Screen name="AccountVerified" component={AccountVerified} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
             </Stack.Navigator>
             :
             <Stack.Navigator>
                 <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
+                <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
             </Stack.Navigator>
 
 

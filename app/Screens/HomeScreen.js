@@ -1,10 +1,15 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Button } from 'react-native'
 
 const HomeScreen = ({navigation}) => {
+    const pressHandler = () => {
+        navigation.push('ProfileScreen');
+    }
+
     return (
         <View style={styles.container}>
             <Text>Home Screen</Text>
+            <Button title="Go to profile page" onPress={pressHandler} />
         </View>
     )
 }
