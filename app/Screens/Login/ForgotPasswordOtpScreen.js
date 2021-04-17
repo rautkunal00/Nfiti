@@ -1,9 +1,9 @@
 import React,{useState,useEffect, Component} from 'react'
 import {StyleSheet, View, Text,ImageBackground,TextInput,TouchableOpacity,TouchableWithoutFeedback, ScrollView } from 'react-native'
-import CustomContainer from '../Components/CustomContainer'
-import Colors from '../Colors/Colors'
+import CustomContainer from '../../Components/CustomContainer'
+import Colors from '../../Colors/Colors'
 
-import AuthBackgroundImage from '../Components/AuthBackgroundImage';
+import AuthBackgroundImage from '../../Components/AuthBackgroundImage';
 // import { TextInput } from 'react-native-paper'
 
 export default class ForgotPasswordOtpScreen extends Component {
@@ -45,7 +45,7 @@ export default class ForgotPasswordOtpScreen extends Component {
         return (
             <ScrollView>
                 <CustomContainer style={{flex:1}}>
-                    <AuthBackgroundImage source={require('../../assets/09.png')} 
+                    <AuthBackgroundImage source={require('../../../assets/09.png')} 
                         Heightstyle={{height:250}}
                         subHeadingStyle="medium"
                         lineStyle={false}

@@ -1,16 +1,18 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
-import LoadingScreen from '../Screens/LoadingScreen';
-import LoginScreen from '../Screens/LoginScreen';
-import SignupScreen from '../Screens/SignupScreen';
-import ForgotYourPassword from '../Screens/ForgotYourPassword';
-import ForgotPasswordOtpScreen from '../Screens/ForgotPasswordOtpScreen'
-import LoginOtpScreen from '../Screens/LoginOtpScreen'
-import PasswordChangedScreen from '../Screens/PasswordChangedScreen';
-import ForgotPassword from '../Screens/ForgotPassword';
-import HomeScreen from '../Screens/HomeScreen';
-import ProfileScreen from '../Screens/ProfileScreen';
-import AccountVerified from '../Screens/AccountVerified';
+
+import LoadingScreen from '../Screens/Login/LoadingScreen';
+import LoginScreen from '../Screens/Login/LoginScreen';
+import SignupScreen from '../Screens/Login/SignupScreen';
+import ForgotYourPassword from '../Screens/Login/ForgotYourPassword';
+import ForgotPasswordOtpScreen from '../Screens/Login/ForgotPasswordOtpScreen'
+import LoginOtpScreen from '../Screens/Login/LoginOtpScreen'
+import PasswordChangedScreen from '../Screens/Login/PasswordChangedScreen';
+import ForgotPassword from '../Screens/Login/ForgotPassword';
+import AccountVerified from '../Screens/Login/AccountVerified';
+
+import HomeScreen from '../Screens/Home';
+import ProfileScreen from '../Screens/Profile';
 
 import AsyncStorage from '@react-native-community/async-storage';
 const Stack = createStackNavigator();

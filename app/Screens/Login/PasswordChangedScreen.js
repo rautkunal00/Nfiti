@@ -1,9 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
-import CustomContainer from '../Components/CustomContainer';
-import AuthBackgroundImage from '../Components/AuthBackgroundImage';
+import CustomContainer from '../../Components/CustomContainer';
+import AuthBackgroundImage from '../../Components/AuthBackgroundImage';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Colors from '../Colors/Colors'
+import Colors from '../../Colors/Colors'
 
 const handleDone = (navigation) => {
     navigation.navigate('Login')
@@ -13,7 +13,7 @@ const PasswordChangedScreen = ({navigation}) => {
         <>
             <CustomContainer >
                 <ScrollView>
-                    <AuthBackgroundImage source={require('../../assets/09.png')}
+                    <AuthBackgroundImage source={require('../../../assets/09.png')}
                         Heightstyle={{ height: 150 }}
                         lineStyle={false}
                     />
