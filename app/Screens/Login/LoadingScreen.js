@@ -4,10 +4,10 @@ import * as Font from 'expo-font';
 export default class LoadingScreen extends Component {
     async componentDidMount(){
         await Font.loadAsync({
-            bold:require('../../assets/fonts/Montserrat-Bold.ttf'),
-            regular:require('../../assets/fonts/Montserrat-Regular.ttf'),
-            medium:require('../../assets/fonts/Montserrat-Medium.ttf'),
-            semiBold:require('../../assets/fonts/Montserrat-SemiBold.ttf'),
+            bold:require('../../../assets/fonts/Montserrat-Bold.ttf'),
+            regular:require('../../../assets/fonts/Montserrat-Regular.ttf'),
+            medium:require('../../../assets/fonts/Montserrat-Medium.ttf'),
+            semiBold:require('../../../assets/fonts/Montserrat-SemiBold.ttf'),
         })
         this.props.navigation.navigate('Login')
         // check at start

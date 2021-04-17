@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, ScrollView, TouchableWithoutFeedback } from 'react-native';
-import CustomContainer from '../Components/CustomContainer';
+import CustomContainer from '../../Components/CustomContainer';
 import * as Yup from 'yup';
 // Icon
-import Colors from '../Colors/Colors'
-import AppFormField from '../Components/Form/AppFormField';
-import SubmitButton from '../Components/Form/SubmitButton';
-import AppFormContainer from '../Components/Form/AppFormContainer';
-import AuthBackgroundImage from '../Components/AuthBackgroundImage';
-import AlereadyHaveAccount from '../Components/AlereadyHaveAccount';
-import BackendError from '../Components/BackendError';
-import { auth } from '../authentication/firebaseService';
+import Colors from '../../Colors/Colors'
+import AppFormField from '../../Components/Form/AppFormField';
+import SubmitButton from '../../Components/Form/SubmitButton';
+import AppFormContainer from '../../Components/Form/AppFormContainer';
+import AuthBackgroundImage from '../../Components/AuthBackgroundImage';
+import AlereadyHaveAccount from '../../Components/AlereadyHaveAccount';
+import BackendError from '../../Components/BackendError';
+import { auth } from '../../authentication/firebaseService';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -68,7 +68,7 @@ export default function LoginScreen({ font, navigation }) {
         <>
             <CustomContainer >
                 <ScrollView>
-                    <AuthBackgroundImage source={require('../../assets/09.png')}
+                    <AuthBackgroundImage source={require('../../../assets/09.png')}
                         Heightstyle={{ height: 250 }}
                         heading="Welcome"
                         headingstyle="bold"

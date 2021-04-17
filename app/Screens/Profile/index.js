@@ -63,17 +63,17 @@ const ProfileScreen = () => {
                     <TouchableOpacity>
                         <StyledSpace></StyledSpace>
                         <StyledText>{item.name}</StyledText>
-                        <StyledImage source={require('../../assets/images/arrow.png')} />
+                        <StyledImage source={require('../../../assets/images/arrow.png')} />
                     </TouchableOpacity>
                 )}
             />
             <StyledOuterView>
                 <StyledView>
-                    <StyledListImage source={require('../../assets/images/profile.png')} style={{width: 30, height: 30}} />
-                    <StyledListImage source={require('../../assets/images/msg.png')} style={{width: 30, height: 30}} />
-                    <StyledListImage source={require('../../assets/images/home.png')} style={{width: 30, height: 30}} />
-                    <StyledListImage source={require('../../assets/images/money.png')} style={{width: 30, height: 30}} />
-                    <StyledListImage source={require('../../assets/images/watch.png')} style={{width: 30, height: 30}} />
+                    <StyledListImage source={require('../../../assets/images/profile.png')} style={{width: 30, height: 30}} />
+                    <StyledListImage source={require('../../../assets/images/msg.png')} style={{width: 30, height: 30}} />
+                    <StyledListImage source={require('../../../assets/images/home.png')} style={{width: 30, height: 30}} />
+                    <StyledListImage source={require('../../../assets/images/money.png')} style={{width: 30, height: 30}} />
+                    <StyledListImage source={require('../../../assets/images/watch.png')} style={{width: 30, height: 30}} />
                 </StyledView>
             </StyledOuterView>
         </StyledTopView>

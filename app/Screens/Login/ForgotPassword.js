@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { View, ScrollView, StyleSheet, Text } from 'react-native'
 
-import CustomContainer from '../Components/CustomContainer';
+import CustomContainer from '../../Components/CustomContainer';
 import * as Yup from 'yup';
-import Colors from '../Colors/Colors'
-import AppFormField from '../Components/Form/AppFormField';
-import SubmitButton from '../Components/Form/SubmitButton';
-import AppFormContainer from '../Components/Form/AppFormContainer';
-import AuthBackgroundImage from '../Components/AuthBackgroundImage';
-import { NavigationContainer } from '@react-navigation/native';
+import Colors from '../../Colors/Colors'
+import AppFormField from '../../Components/Form/AppFormField';
+import SubmitButton from '../../Components/Form/SubmitButton';
+import AppFormContainer from '../../Components/Form/AppFormContainer';
+import AuthBackgroundImage from '../../Components/AuthBackgroundImage';
+// import { NavigationContainer } from '@react-navigation/native';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -48,7 +48,7 @@ const ForgotPassword = ({ navigation }) => {
         <>
             <CustomContainer >
                 <ScrollView>
-                    <AuthBackgroundImage source={require('../../assets/09.png')}
+                    <AuthBackgroundImage source={require('../../../assets/09.png')}
                         Heightstyle={{ height: 250 }}
                         lineStyle={false}
                     />

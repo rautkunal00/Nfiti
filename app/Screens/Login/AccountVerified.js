@@ -1,9 +1,9 @@
 import React, { useState, useEffect, Component } from 'react'
 import { StyleSheet, View, Text, ImageBackground, TextInput, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native'
-import CustomContainer from '../Components/CustomContainer';
+import CustomContainer from '../../Components/CustomContainer';
 
-import AuthBackgroundImage from '../Components/AuthBackgroundImage';
-import Colors from '../Colors/Colors'
+import AuthBackgroundImage from '../../Components/AuthBackgroundImage';
+import Colors from '../../Colors/Colors'
 // import { TextInput } from 'react-native-paper'
 
 export default class AccountVerified extends Component {
@@ -15,7 +15,7 @@ export default class AccountVerified extends Component {
         return (
             <ScrollView>
                 <CustomContainer style={{ flex: 1 }}>
-                    <AuthBackgroundImage source={require('../../assets/09.png')}
+                    <AuthBackgroundImage source={require('../../../assets/09.png')}
                         Heightstyle={{ height: 150 }}
                         subHeadingStyle="medium"
                         lineStyle={false}
