@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View,ActivityIndicator } from 'react-native'
+import styled from 'styled-components/native';
 import * as Font from 'expo-font';
+import * as colors from '../../styles/colors'
+
+
 export default class LoadingScreen extends Component {
     async componentDidMount(){
-        await Font.loadAsync({
-            bold:require('../../../assets/fonts/Montserrat-Bold.ttf'),
-            regular:require('../../../assets/fonts/Montserrat-Regular.ttf'),
-            medium:require('../../../assets/fonts/Montserrat-Medium.ttf'),
-            semiBold:require('../../../assets/fonts/Montserrat-SemiBold.ttf'),
-        })
-        this.props.navigation.navigate('Login')
+        setTimeout(()=>{this.props.navigation.navigate('Login')}, 5000);
+        
         // check at start
 
         // firebase.auth().onAuthStateChanged(user => {
@@ -28,17 +27,21 @@ export default class LoadingScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text> Loading Screen .....</Text>
-                <ActivityIndicator size="large"></ActivityIndicator>
+                <StyledListImage source={require('../../../assets/images/logo.png')} style={{width: 300, height: 300}} />
             </View>
         )
     }
 }
 
+const StyledListImage = styled.Image`
+    padding: 0px;
+`;
+
 const styles = StyleSheet.create({
     container:{
         flex:1,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        backgroundColor: colors.PRIMARY
     }
 })
