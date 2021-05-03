@@ -13,6 +13,8 @@ import AccountVerified from '../Screens/Login/AccountVerified';
 
 import HomeScreen from '../Screens/Home';
 import ProfileScreen from '../Screens/Profile';
+import CourierScreen from '../Screens/Courier';
+import SuccessPopup from '../Components/SuccessPopup';
 
 import AsyncStorage from '@react-native-community/async-storage';
 const Stack = createStackNavigator();
@@ -29,8 +31,10 @@ const AuthNavigation = () => {
             </Stack.Navigator>
             :
             <Stack.Navigator>
+                {/* <Stack.Screen name="SuccessPopup" component={SuccessPopup} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} /> */}
                 <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
                 <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
+                <Stack.Screen name="CourierScreen" component={CourierScreen} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
             </Stack.Navigator>
 
 

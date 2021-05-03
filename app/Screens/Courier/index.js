@@ -1,0 +1,40 @@
+import React from 'react';
+import { View, Text } from 'react-native';
+import {
+    Container,
+    Grid,
+    Col,
+    Row,
+    Content,
+    StyleProvider,
+    Form,
+    Item,
+    Input,
+    Button,
+    Icon,
+} from 'native-base';
+
+import getTheme from '../../utils/native-base-theme/components';
+import material from '../../utils/native-base-theme/variables/variables';
+
+import FooterComponent from '../../Components/layout/FooterComponent';
+import HeaderComponent from './HeaderComponent';
+import Banner from './Banner';
+import FormComponent from './FormComponent';
+
+const index = () => {
+    return (
+        <StyleProvider style={getTheme(material)}>
+            <Container style={{backgroundColor: '#e4e4e4'}}>
+                <HeaderComponent />
+                <Banner />
+                <Content padder>
+                    <FormComponent />
+                </Content>
+                <FooterComponent />
+            </Container>
+        </StyleProvider>
+    );
+};
+
+export default index;
