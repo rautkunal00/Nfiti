@@ -51,6 +51,7 @@ export const FlexWrapper = styled.View`
     flex-direction: row;
     justify-content: space-between;
 `;
+
 export const DropdownWrapper = styled.View`
     max-width: 130px;
 `;
