@@ -23,7 +23,7 @@ export default {
     btnDisabledBg: '#b5b5b5',
     buttonPadding: 6,
     btnPrimaryBg: '#073259',
-    btnPrimaryColor: '#073259',
+    btnPrimaryColor: '#fff',
     btnInfoBg: 'rgba(7,50,89,1)',
     btnInfoColor: '#fff',
     btnSuccessBg: '#5cb85c',

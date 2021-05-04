@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View,  } from 'react-native';
 import {
     Header,
     Title,
@@ -10,6 +10,7 @@ import {
     Icon,
     Form,
     Item,
+    Text,
     Input,
 } from 'native-base';
 
@@ -22,14 +23,11 @@ const HeaderComponent = () => {
                 </Button>
             </Left>
             <Body>
-            <Item>
-            <Icon name="navigate" style={{color:"#ffe018"}} />
-            <Input placeholder="26, Straight Heights, Western" option={{inlineLabel: true}}/>
-            </Item>
+            <Title>Courier</Title>
             </Body>
             <Right>
-                <Button primary>
-                   <Text>Become a Pasrtner</Text>
+                <Button rounded primary>
+                   <Text style={{fontSize:10}}>Become a Partner</Text>
                 </Button>
                 <Button transparent>
                     <Icon name="notifications" />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import {
     Container,
     Grid,
@@ -11,6 +11,7 @@ import {
     Item,
     Input,
     Button,
+    Text,
     Icon,
 } from 'native-base';
 
