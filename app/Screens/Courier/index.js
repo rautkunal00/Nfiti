@@ -22,19 +22,20 @@ import HeaderComponent from './HeaderComponent';
 import Banner from './Banner';
 import FormComponent from './FormComponent';
 
-const index = () => {
+const index = ({ navigation }) => {
     return (
         <StyleProvider style={getTheme(material)}>
-            <Container style={{backgroundColor: '#e4e4e4'}}>
+            <Container style={{ backgroundColor: '#e4e4e4' }}>
                 <HeaderComponent />
                 <Banner />
                 <Content padder>
                     <FormComponent />
                 </Content>
-                <FooterComponent />
+                <FooterComponent navigation={navigation} />
             </Container>
         </StyleProvider>
     );
 };
 
 export default index;
+

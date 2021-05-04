@@ -1,33 +1,64 @@
 import React, { useState } from 'react';
-import { Image } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { Footer, FooterTab } from 'native-base';
 import styled from 'styled-components/native';
 
-const FooterComponent = () => {
+const FooterComponent = props => {
     return (
         <Footer>
             <FooterTab>
                 <StyledView>
-                    <StyledListImage
-                        source={require('../../../assets/images/profile.png')}
-                        style={{ width: 30, height: 30 }}
-                    />
-                    <StyledListImage
-                        source={require('../../../assets/images/msg.png')}
-                        style={{ width: 30, height: 30 }}
-                    />
-                    <StyledListImage
-                        source={require('../../../assets/images/home.png')}
-                        style={{ width: 30, height: 30 }}
-                    />
-                    <StyledListImage
-                        source={require('../../../assets/images/money.png')}
-                        style={{ width: 30, height: 30 }}
-                    />
-                    <StyledListImage
-                        source={require('../../../assets/images/watch.png')}
-                        style={{ width: 30, height: 30 }}
-                    />
+                    <TouchableOpacity
+                        onPress={() => {
+                            props.navigation.push('ProfileScreen');
+                            props.navigation.navigate('ProfileScreen');
+                        }}
+                    >
+                        <StyledListImage
+                            source={require('../../../assets/images/profile.png')}
+                            style={{ width: 30, height: 30 }}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            props.navigation.navigate('HomeScreen');
+                        }}
+                    >
+                        <StyledListImage
+                            source={require('../../../assets/images/msg.png')}
+                            style={{ width: 33, height: 30 }}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            props.navigation.navigate('HomeScreen');
+                        }}
+                    >
+                        <StyledListImage
+                            source={require('../../../assets/images/home.png')}
+                            style={{ width: 30, height: 30 }}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            props.navigation.navigate('HomeScreen');
+                        }}
+                    >
+                        <StyledListImage
+                            source={require('../../../assets/images/money.png')}
+                            style={{ width: 40, height: 30 }}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            props.navigation.navigate('HomeScreen');
+                        }}
+                    >
+                        <StyledListImage
+                            source={require('../../../assets/images/watch.png')}
+                            style={{ width: 30, height: 30 }}
+                        />
+                    </TouchableOpacity>
                 </StyledView>
             </FooterTab>
         </Footer>

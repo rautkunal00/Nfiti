@@ -26,7 +26,9 @@ import HeaderComponent from '../../Components/layout/HeaderComponent';
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
 const HomeScreen = ({ navigation }) => {
-    // const [selectedLanguage, setSelectedLanguage] = useState();
+    const pressHandler = (screenName = 'ProfileScreen') => {
+        navigation.push(screenName);
+    };
 
     const TransportIcon = require('../../../assets/images/Transport.png');
     const CourierIcon = require('../../../assets/images/Courier.png');
@@ -39,7 +41,7 @@ const HomeScreen = ({ navigation }) => {
     return (
         <StyleProvider style={getTheme(material)}>
             <Container>
-                <HeaderComponent />
+                <HeaderComponent navigation={navigation}/>
                 <Content padder>
                     <SliderBox
                         images={images}
@@ -119,7 +121,7 @@ const HomeScreen = ({ navigation }) => {
                         </Row>
                     </Grid>
                 </Content>
-                <FooterComponent />
+                <FooterComponent navigation={navigation} />
             </Container>
         </StyleProvider>
     );
@@ -127,10 +129,14 @@ const HomeScreen = ({ navigation }) => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({
-    shadow: {
-        shadowColor: '#000',
-        shadowOpacity: 1,
-        shadowRadius: 5,
-    },
-});
+// const styles = StyleSheet.create({
+//     shadow: {
+//         shadowColor: '#000',
+//         shadowOpacity: 1,
+//         shadowRadius: 5,
+//     container: {
+//         flex: 1,
+//         justifyContent: 'center',
+//         alignContent: 'center',
+//     },
+// });

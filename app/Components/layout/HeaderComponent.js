@@ -2,11 +2,17 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Header, Title, Button, Left, Right, Body, Icon } from 'native-base';
 
-const HeaderComponent = () => {
+const HeaderComponent = (props) => {
     return (
         <Header>
             <Left>
-                <Button transparent>
+                <Button
+                    transparent
+                    onPress={() => {
+                        props.navigation.push('MyDrawer');
+                        props.navigation.navigate('MyDrawer');
+                    }}
+                >
                     <Icon name="menu" />
                 </Button>
             </Left>
