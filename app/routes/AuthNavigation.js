@@ -13,7 +13,7 @@ import PasswordChangedScreen from '../Screens/Login/PasswordChangedScreen';
 import ForgotPassword from '../Screens/Login/ForgotPassword';
 import AccountVerified from '../Screens/Login/AccountVerified';
 
-// import MyDrawer from './Drawer';
+import MyDrawer from './Drawer';
 import HomeScreen from '../Screens/Home';
 import ProfileScreen from '../Screens/Profile';
 import CourierScreen from '../Screens/Courier';
@@ -38,7 +38,7 @@ const AuthNavigation = () => {
             <Stack.Navigator>
 
                 {/* <Stack.Screen name="SuccessPopup" component={SuccessPopup} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} /> */}
-                {/* <Stack.Screen name="MyDrawer" component={MyDrawer} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} /> */}
+                <Stack.Screen name="MyDrawer" component={MyDrawer} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
                 <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
                 <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
                 <Stack.Screen name="CourierScreen" component={CourierScreen} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
