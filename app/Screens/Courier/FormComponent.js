@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import {FontAwesome} from '@expo/vector-icons';
 import {
     Form,
     Item,
-    Input,
     Icon,
     Radio,
     Grid,
@@ -14,15 +14,17 @@ import {
     Textarea,
 } from 'native-base';
 import styled from 'styled-components/native';
+import Input from '../../Components/Input'
+import DatePicker from '../../Components/DatePicker'
 
 const FormComponent = () => {
+    const [date, setDate] = useState(new Date());
     return (
         <Form>
-            <Item rounded style={{ borderRadius: 20 }}>
+            <Item rounded style={{ borderRadius: 20, backgroundColor: '#fff', }}>
                 <Icon name="search" />
                 <Input
                     placeholder="Sending something.."
-                    option={{ inlineLabel: true }}
                 />
             </Item>
 
@@ -106,12 +108,12 @@ const FormComponent = () => {
                 <H3>From,</H3>
                 <Item
                     rounded
-                    style={{ borderRadius: 20, backgroundColor: '#fff' }}
+                    style={{ borderRadius: 20, backgroundColor: '#fff',paddingLeft:10 }}
                 >
-                    <Icon name="search" />
+                    <FontAwesome name="map-marker" color="#ffe018" size={32}/>
                     <Input
                         placeholderTextColor="#5a5858"
-                        placeholder="Sending something.."
+                        placeholder="Address"
                         option={{ inlineLabel: true }}
                     />
                 </Item>
@@ -122,14 +124,16 @@ const FormComponent = () => {
                     <Textarea
                         rowSpan={3}
                         style={{
-                            padding: 10,
+                            paddingTop: 15,
                             paddingLeft: 20,
                             width: 100 + '%',
                         }}
                         placeholderTextColor="#5a5858"
                         placeholder="Type your note here..."
                     />
+                    <FontAwesome name="file-text-o" size={20} style={{marginLeft:-30}} />
                 </Item>
+                <DatePicker mode="date" placeholder="Date" value={date} onChangeHandler={(value)=>{setDate(value)}}/>
             </Card>
         </Form>
     );
