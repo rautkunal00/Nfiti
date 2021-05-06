@@ -7,6 +7,7 @@ export const StyledInput = styled(Input)`
     font-size: 13px;
     padding: 0 28px;
     border-radius: 15px;
+    height: 41px;
 `;
 
 export const StyledItem = styled(Item)`

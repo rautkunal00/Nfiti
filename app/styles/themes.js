@@ -11,6 +11,7 @@ const theme = {
         BACKGROUND_COLOR: '#f3f2f2',
         TEXT_COLOR: '#5a5858',
         BLACK_TEXT: '#090202',
+        ACTIVE_PRIMARY: '#073259',
     },
     COLOR_PALETTE: {
         WHITE: '#fff',

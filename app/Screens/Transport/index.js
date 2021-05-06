@@ -11,7 +11,7 @@ import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
 // } from 'native-base';
 
 import FieldPreview from './components/FieldPreview/';
-
+import Button from '../../Components/Button';
 import { map } from 'lodash';
 
 import {
@@ -24,12 +24,20 @@ import {
     StyledField,
     FormWrapper,
     FlexWrapper,
+    PressButton,
+    ButtonText,
 } from './styles';
 
 const TransportService = props => {
-    const { pickupData, handleFieldChange, onSubmitHandler } = props;
+    const {
+        pickupData,
+        handleFieldChange,
+        onSubmitHandler,
+        destinationData,
+    } = props;
     return (
         <Wrapper>
+            {/* TODO change this image */}
             <StyledImage
                 source={{
                     uri:
@@ -49,11 +57,7 @@ const TransportService = props => {
                 <PickupWrapper elevation={10}>
                     {map(pickupData, (eachField, index) => {
                         return (
-                            <StyledField
-                                // elevation={2}
-
-                                key={index}
-                            >
+                            <StyledField key={index}>
                                 {!!eachField.children ? (
                                     <FlexWrapper>
                                         {map(
@@ -62,7 +66,9 @@ const TransportService = props => {
                                                 return (
                                                     <View
                                                         style={{
-                                                            minWidth: 150,
+                                                            flex: 1,
+                                                            height: 41,
+                                                            ...eachItem.style,
                                                         }}
                                                         key={itemIndex}
                                                     >
@@ -94,9 +100,53 @@ const TransportService = props => {
             </FormWrapper>
 
             {/* To Form */}
-            <TouchableOpacity onPress={onSubmitHandler}>
-                <Text>Press Here</Text>
-            </TouchableOpacity>
+            <FormWrapper>
+                <StyledHeading>To</StyledHeading>
+                <PickupWrapper elevation={10}>
+                    {map(destinationData, (eachField, index) => {
+                        return (
+                            <StyledField key={index}>
+                                {!!eachField.children ? (
+                                    <FlexWrapper>
+                                        {map(
+                                            eachField.children,
+                                            (eachItem, itemIndex) => {
+                                                return (
+                                                    <View
+                                                        style={{
+                                                            flex: 1,
+                                                            height: 41,
+                                                            ...eachItem.style,
+                                                        }}
+                                                        key={itemIndex}
+                                                    >
+                                                        <FieldPreview
+                                                            handleFieldChange={
+                                                                handleFieldChange
+                                                            }
+                                                            parentKey={
+                                                                eachField.parentKey
+                                                            }
+                                                            field={eachItem}
+                                                        />
+                                                    </View>
+                                                );
+                                            }
+                                        )}
+                                    </FlexWrapper>
+                                ) : (
+                                    <FieldPreview
+                                        parentKey={null}
+                                        handleFieldChange={handleFieldChange}
+                                        field={eachField}
+                                    />
+                                )}
+                            </StyledField>
+                        );
+                    })}
+                </PickupWrapper>
+            </FormWrapper>
+            <Button title="Submit" onClickHandler={onSubmitHandler} />
         </Wrapper>
     );
 };

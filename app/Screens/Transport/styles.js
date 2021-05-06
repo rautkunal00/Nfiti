@@ -49,9 +49,14 @@ export const StyledItem = styled(Item)`
 export const FlexWrapper = styled.View`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
 `;
 
 export const DropdownWrapper = styled.View`
-    max-width: 130px;
+    width: 100%;
+`;
+
+export const StyledIcon = styled.Image`
+    width: 100%;
+    height: 100%;
 `;
