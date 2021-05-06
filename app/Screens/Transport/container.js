@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import Transport from './';
 import find from 'lodash/find';
-import flatten from 'lodash/flatten';
-import findIndex from 'lodash/findIndex';
-import { Image } from 'react-native';
 
 import { StyledIcon } from './styles';
 

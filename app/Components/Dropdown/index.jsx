@@ -32,7 +32,6 @@ const Dropdown = props => {
     return (
         <ModalDropdown
             onSelect={(index, value) => {
-                console.log(value, 'value');
                 onChangeHandler(value);
             }}
             style={{

@@ -1,21 +1,11 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
-// import {
-//     Container,
-//     Header,
-//     Content,
-//     Form,
-//     Item,
-//     Input,
-//     Label,
-// } from 'native-base';
+import React from 'react';
+import { View } from 'react-native';
 
 import FieldPreview from './components/FieldPreview/';
 import Button from '../../Components/Button';
 import { map } from 'lodash';
 
 import {
-    FromFormWrapper,
     PickupWrapper,
     StyledImage,
     Wrapper,
@@ -24,8 +14,6 @@ import {
     StyledField,
     FormWrapper,
     FlexWrapper,
-    PressButton,
-    ButtonText,
 } from './styles';
 
 const TransportService = props => {
