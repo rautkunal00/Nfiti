@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Image, View, Dimensions, StyleSheet } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import {
     Container,
     Grid,
@@ -42,13 +42,9 @@ const HomeScreen = ({ navigation }) => {
         <StyleProvider style={getTheme(material)}>
             <Container>
                 <HeaderComponent navigation={navigation}/>
-                <Content padder>
-                    <SliderBox
-                        images={images}
-                        sliderBoxHeight={200}
                         onCurrentImagePressed={index =>
-                            console.log(`image ${index} pressed`)
-                        }
+    )
+}
                         dotColor="#FFEE58"
                         inactiveDotColor="#90A4AE"
                         paginationBoxVerticalPadding={20}
@@ -130,12 +126,12 @@ const HomeScreen = ({ navigation }) => {
 export default HomeScreen;
 
 // const styles = StyleSheet.create({
-//     shadow: {
-//         shadowColor: '#000',
-//         shadowOpacity: 1,
-//         shadowRadius: 5,
-//     container: {
-//         flex: 1,
+    container:{
+        flex:1,
+        justifyContent:'center',
+        alignContent:'center'
+    }
+})
 //         justifyContent: 'center',
 //         alignContent: 'center',
 //     },

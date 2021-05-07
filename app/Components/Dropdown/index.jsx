@@ -1,19 +1,22 @@
 import React from 'react';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { withTheme } from 'styled-components/native';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { padding } from '../../styles/mixins';
 
-const RightArrow = () => {
+const RightArrow = props => {
+    const { renderRightComponent } = props;
     return (
-        <Text
+        <View
             style={{
-                right: 0,
+                width: 10,
+                height: 10,
                 position: 'absolute',
+                right: -5,
             }}
         >
-            +
-        </Text>
+            {renderRightComponent}
+        </View>
     );
 };
 
@@ -23,29 +26,30 @@ const Dropdown = props => {
         placeholder,
         dropdownOptions,
         defaultOptions,
+        renderRightComponent,
+        value,
     } = props;
-
     return (
         <ModalDropdown
             onSelect={(index, value) => {
                 onChangeHandler(value);
             }}
             style={{
-                minWidth: 130,
-                width: '100%',
                 backgroundColor: 'white',
-                ...padding(15, 18, 15, 18),
+                ...padding(12, 18, 12, 18),
                 borderRadius: 10,
             }}
             textStyle={{
-                fontSize: 10,
+                fontSize: 12,
                 color: props.theme.COLOR.TEXT_COLOR,
             }}
             dropdownStyle={{
                 marginTop: -10,
             }}
-            renderRightComponent={() => <RightArrow />}
-            defaultValue={placeholder}
+            renderRightComponent={() => (
+                <RightArrow renderRightComponent={renderRightComponent} />
+            )}
+            defaultValue={value || placeholder}
             renderSeparator={() => <View></View>}
             options={dropdownOptions}
             {...defaultOptions}

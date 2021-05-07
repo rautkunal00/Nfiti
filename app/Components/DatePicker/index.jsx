@@ -1,36 +1,44 @@
+// libraries
 import React, { useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import Moment from 'react-moment';
 
-import { StyledDateTimeValue } from './style';
+// styles
+import { StyledDateTimeValue, StyledDateTime, RightComponent } from './style';
 
 const DateTimePickerComponent = props => {
-    const { mode, value, placeholder, onChangeHandler, options } = props;
+    const {
+        mode,
+        value,
+        onChangeHandler,
+        options,
+        renderRightComponent,
+        disabled,
+    } = props;
     const [showPicker, setShowPicker] = useState(false);
-    
 
     const handleShowPicker = (isShowPicker = true) => {
         setShowPicker(isShowPicker);
     };
 
-    const pickerChangeHandler = selectedField => {
-        console.log('selectedField', selectedField);
-        onChangeHandler(selectedField);
+    const pickerChangeHandler = (event, selectedField) => {
+        if (event.type !== 'dismissed') {
+            onChangeHandler(selectedField);
+        }
     };
-    console.log(showPicker, 'showPicker');
+
     return (
         <View>
             <StyledDateTimeValue onPress={() => handleShowPicker(true)}>
-                {/* <Text>{new Date(value).toISOString()}</Text> */}
                 <Moment
                     format={mode === 'date' ? 'D MMM YYYY' : 'h:mm:ss a'}
-                    element={Text}
+                    element={StyledDateTime}
                 >
                     {new Date(value).toISOString()}
                 </Moment>
             </StyledDateTimeValue>
-            {showPicker && (
+            {showPicker && !disabled && (
                 <DateTimePicker
                     value={value}
                     mode={mode}
@@ -38,12 +46,15 @@ const DateTimePickerComponent = props => {
                     display="default"
                     onChange={(event, selectedField) => {
                         handleShowPicker(false);
-                        pickerChangeHandler(selectedField);
+                        pickerChangeHandler(event, selectedField);
                     }}
                     maximumDate={new Date(2300, 10, 20)}
-                    minimumDate={new Date(1950, 0, 1)}
+                    minimumDate={new Date()}
                     {...options}
                 />
+            )}
+            {renderRightComponent && (
+                <RightComponent>{renderRightComponent}</RightComponent>
             )}
         </View>
     );
@@ -53,6 +64,7 @@ DateTimePickerComponent.defaultProps = {
     mode: 'date',
     value: new Date(),
     onChangeHandler: () => {},
+    disabled: false,
 };
 
 export default DateTimePickerComponent;
