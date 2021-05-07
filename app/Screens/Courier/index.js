@@ -21,20 +21,18 @@ import material from '../../utils/native-base-theme/variables/variables';
 import FooterComponent from '../../Components/layout/FooterComponent';
 import HeaderComponent from './HeaderComponent';
 import Banner from './Banner';
-import FormComponent from './FormComponent';
+import FormComponent from './container';
 
-const index = ({ navigation }) => {
+const index = (props) => {
     return (
-        <StyleProvider style={getTheme(material)}>
             <Container style={{ backgroundColor: '#e4e4e4' }}>
                 <HeaderComponent />
                 <Banner />
                 <Content padder>
-                    <FormComponent />
+                    <FormComponent {...props}/>
                 </Content>
-                <FooterComponent navigation={navigation} />
+                <FooterComponent navigation={props.navigation} />
             </Container>
-        </StyleProvider>
     );
 };
 

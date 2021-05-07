@@ -29,6 +29,7 @@ import styled from 'styled-components/native';
 const HomeCard = ( props ) => {
 
     const pressHandler = () => {
+        // console.log(props.navigation);
         props.navigation.push(props.onPress);
         props.navigation.navigate(props.onPress)
     };

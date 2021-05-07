@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-// import {FontAwesome} from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import {
     Form,
     Item,
@@ -14,128 +14,173 @@ import {
     Textarea,
 } from 'native-base';
 import styled from 'styled-components/native';
-import Input from '../../Components/Input'
-import DatePicker from '../../Components/DatePicker'
+import Input from '../../Components/Input';
+import DatePicker from '../../Components/DatePicker';
 
-const FormComponent = () => {
+import FieldPreview from './components/FieldPreview/';
+import Button from '../../Components/Button';
+import RadioButton from '../../Components/RadioButton/GridRadio';
+
+import {
+    PickupWrapper,
+    StyledImage,
+    Wrapper,
+    StyledMap,
+    StyledHeading,
+    StyledField,
+    FormWrapper,
+    FlexWrapper,
+} from './styles';
+import { map } from 'lodash';
+
+const FormComponent = props => {
     const [date, setDate] = useState(new Date());
+    const {
+        pickupData,
+        handleFieldChange,
+        onSubmitHandler,
+        destinationData,
+    } = props;
     return (
-        <Form>
-            <Item rounded style={{ borderRadius: 20, backgroundColor: '#fff', }}>
-                <Icon name="search" />
-                <Input
-                    placeholder="Sending something.."
-                />
-            </Item>
-
-            <StyledGrid>
-                <StyledCol>
-                    <StyledRow>
-                        <Radio
-                            color={'#707070'}
-                            selectedColor={'#5cb85c'}
-                            selected={false}
-                        />
-                    </StyledRow>
-                    <StyledRow>
-                        <Text style={{ fontSize: 16, textAlign: 'center' }}>
-                            Appearels
-                        </Text>
-                    </StyledRow>
-                </StyledCol>
-
-                <StyledCol>
-                    <StyledRow>
-                        <Radio
-                            color={'#707070'}
-                            selectedColor={'#5cb85c'}
-                            selected={false}
-                        />
-                    </StyledRow>
-                    <StyledRow>
-                        <Text style={{ fontSize: 16, textAlign: 'center' }}>
-                            Paper & Parcel
-                        </Text>
-                    </StyledRow>
-                </StyledCol>
-
-                <StyledCol>
-                    <StyledRow>
-                        <Radio
-                            color={'#707070'}
-                            selectedColor={'#5cb85c'}
-                            selected={false}
-                        />
-                    </StyledRow>
-                    <StyledRow>
-                        <Text style={{ fontSize: 16, textAlign: 'center' }}>
-                            Groceries
-                        </Text>
-                    </StyledRow>
-                </StyledCol>
-
-                <StyledCol>
-                    <StyledRow>
-                        <Radio
-                            color={'#707070'}
-                            selectedColor={'#5cb85c'}
-                            selected={false}
-                        />
-                    </StyledRow>
-                    <StyledRow>
-                        <Text style={{ fontSize: 16, textAlign: 'center' }}>
-                            Cake & Gifts
-                        </Text>
-                    </StyledRow>
-                </StyledCol>
-
-                <StyledCol>
-                    <StyledRow>
-                        <Radio
-                            color={'#707070'}
-                            selectedColor={'#5cb85c'}
-                            selected={false}
-                        />
-                    </StyledRow>
-                    <StyledRow>
-                        <Text style={{ fontSize: 16, textAlign: 'center' }}>
-                            Material
-                        </Text>
-                    </StyledRow>
-                </StyledCol>
-            </StyledGrid>
-            <Card transparent>
-                <H3>From,</H3>
-                <Item
-                    rounded
-                    style={{ borderRadius: 20, backgroundColor: '#fff',paddingLeft:10 }}
-                >
-                    <FontAwesome name="map-marker" color="#ffe018" size={32}/>
-                    <Input
-                        placeholderTextColor="#5a5858"
-                        placeholder="Address"
-                        option={{ inlineLabel: true }}
-                    />
-                </Item>
+        // <Form>
+        //     <Card transparent>
+        //         <H3>From,</H3>
+        //         <Item
+        //             rounded
+        //             style={{ borderRadius: 20, backgroundColor: '#fff',paddingLeft:10 }}
+        //         >
+        //             <FontAwesome name="map-marker" color="#ffe018" size={32}/>
+        //             <Input
+        //                 placeholderTextColor="#5a5858"
+        //                 placeholder="Address"
+        //                 option={{ inlineLabel: true }}
+        //             />
+        //         </Item>
+        //         <Item
+        //             rounded
+        //             style={{ borderRadius: 20, backgroundColor: '#fff' }}
+        //         >
+        //             <Textarea
+        //                 rowSpan={3}
+        //                 style={{
+        //                     paddingTop: 15,
+        //                     paddingLeft: 20,
+        //                     width: 100 + '%',
+        //                 }}
+        //                 placeholderTextColor="#5a5858"
+        //                 placeholder="Type your note here..."
+        //             />
+        //             <FontAwesome name="file-text-o" size={20} style={{marginLeft:-30}} />
+        //         </Item>
+        //         <DatePicker mode="date" placeholder="Date" value={date} onChangeHandler={(value)=>{setDate(value)}}/>
+        //     </Card>
+        // </Form>
+        <>
+            <Form>
                 <Item
                     rounded
                     style={{ borderRadius: 20, backgroundColor: '#fff' }}
                 >
-                    <Textarea
-                        rowSpan={3}
-                        style={{
-                            paddingTop: 15,
-                            paddingLeft: 20,
-                            width: 100 + '%',
-                        }}
-                        placeholderTextColor="#5a5858"
-                        placeholder="Type your note here..."
-                    />
-                    <FontAwesome name="file-text-o" size={20} style={{marginLeft:-30}} />
+                    <Icon name="search" />
+                    <Input placeholder="Sending something.." />
                 </Item>
-                <DatePicker mode="date" placeholder="Date" value={date} onChangeHandler={(value)=>{setDate(value)}}/>
-            </Card>
-        </Form>
+
+                <RadioButton {...props} />
+            </Form>
+            <FormWrapper>
+                <StyledHeading>From</StyledHeading>
+                <PickupWrapper elevation={10}>
+                    {map(pickupData, (eachField, index) => {
+                        return (
+                            <StyledField key={index}>
+                                {!!eachField.children ? (
+                                    <FlexWrapper>
+                                        {map(
+                                            eachField.children,
+                                            (eachItem, itemIndex) => {
+                                                return (
+                                                    <View
+                                                        style={{
+                                                            flex: 1,
+                                                            height: 41,
+                                                            ...eachItem.style,
+                                                        }}
+                                                        key={itemIndex}
+                                                    >
+                                                        <FieldPreview
+                                                            handleFieldChange={
+                                                                handleFieldChange
+                                                            }
+                                                            parentKey={
+                                                                eachField.parentKey
+                                                            }
+                                                            field={eachItem}
+                                                        />
+                                                    </View>
+                                                );
+                                            }
+                                        )}
+                                    </FlexWrapper>
+                                ) : (
+                                    <FieldPreview
+                                        parentKey={null}
+                                        handleFieldChange={handleFieldChange}
+                                        field={eachField}
+                                    />
+                                )}
+                            </StyledField>
+                        );
+                    })}
+                </PickupWrapper>
+            </FormWrapper>
+            <FormWrapper>
+                <StyledHeading>To</StyledHeading>
+                <PickupWrapper elevation={10}>
+                    {map(destinationData, (eachField, index) => {
+                        return (
+                            <StyledField key={index}>
+                                {!!eachField.children ? (
+                                    <FlexWrapper>
+                                        {map(
+                                            eachField.children,
+                                            (eachItem, itemIndex) => {
+                                                return (
+                                                    <View
+                                                        style={{
+                                                            flex: 1,
+                                                            height: 41,
+                                                            ...eachItem.style,
+                                                        }}
+                                                        key={itemIndex}
+                                                    >
+                                                        <FieldPreview
+                                                            handleFieldChange={
+                                                                handleFieldChange
+                                                            }
+                                                            parentKey={
+                                                                eachField.parentKey
+                                                            }
+                                                            field={eachItem}
+                                                        />
+                                                    </View>
+                                                );
+                                            }
+                                        )}
+                                    </FlexWrapper>
+                                ) : (
+                                    <FieldPreview
+                                        parentKey={null}
+                                        handleFieldChange={handleFieldChange}
+                                        field={eachField}
+                                    />
+                                )}
+                            </StyledField>
+                        );
+                    })}
+                </PickupWrapper>
+                <Button title="Submit Request" onClickHandler={onSubmitHandler} />
+            </FormWrapper>
+        </>
     );
 };
 
