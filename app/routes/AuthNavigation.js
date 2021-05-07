@@ -16,6 +16,7 @@ import AccountVerified from '../Screens/Login/AccountVerified';
 import HomeScreen from '../Screens/Home';
 import ProfileScreen from '../Screens/Profile';
 import SuccessPopup from '../Components/SuccessPopup';
+import TransportScreen from '../Screens/Transport';
 
 import AsyncStorage from '@react-native-community/async-storage';
 const Stack = createStackNavigator();
@@ -34,101 +35,6 @@ const AuthNavigation = () => {
     return TOKEN == null ? (
         <Stack.Navigator>
             <Stack.Screen
-                name="Loding"
-                <Stack.Screen name="forgotPasswordOtpScreen" component={ForgotPasswordOtpScreen} options={{ headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
-                <Stack.Screen name="forgotYourPassword" component={ForgotYourPassword} options={{ headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
-                <Stack.Screen name="Signup" component={SignupScreen} options={{ headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
-                <Stack.Screen name="loginOtp" component={LoginOtpScreen} options={{ headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
-                <Stack.Screen name="forgotPassword" component={ForgotPassword} options={{ headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
-                <Stack.Screen name="passwordChangedScreen" component={PasswordChangedScreen} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
-                <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
-                <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
-                <Stack.Screen name="AccountVerified" component={AccountVerified} options={{ headerShown: false, headerTransparent: true, headerTitle: null, headerTintColor: '#fff' }} />
-                name="forgotPasswordOtpScreen"
-                component={ForgotPasswordOtpScreen}
-                options={{
-                    headerTransparent: true,
-                    headerTitle: null,
-                    headerTintColor: '#fff',
-                }}
-            />
-            <Stack.Screen
-                name="forgotYourPassword"
-                component={ForgotYourPassword}
-                options={{
-                    headerTransparent: true,
-                    headerTitle: null,
-                    headerTintColor: '#fff',
-                }}
-            />
-            <Stack.Screen
-                name="Signup"
-                component={SignupScreen}
-                options={{
-                    headerTransparent: true,
-                    headerTitle: null,
-                    headerTintColor: '#fff',
-                }}
-            />
-            <Stack.Screen
-                name="loginOtp"
-                component={LoginOtpScreen}
-                options={{
-                    headerTransparent: true,
-                    headerTitle: null,
-                    headerTintColor: '#fff',
-                }}
-            />
-            <Stack.Screen
-                name="forgotPassword"
-                component={ForgotPassword}
-                options={{
-                    headerTransparent: true,
-                    headerTitle: null,
-                    headerTintColor: '#fff',
-                }}
-            />
-            <Stack.Screen
-                name="passwordChangedScreen"
-                component={PasswordChangedScreen}
-                options={{
-                    headerShown: false,
-                    headerTransparent: true,
-                    headerTitle: null,
-                    headerTintColor: '#fff',
-                }}
-            />
-            <Stack.Screen
-                name="HomeScreen"
-                component={HomeScreen}
-                options={{
-                    headerShown: false,
-                    headerTransparent: true,
-                    headerTitle: null,
-                    headerTintColor: '#fff',
-                }}
-            />
-            <Stack.Screen
-                name="ProfileScreen"
-                component={ProfileScreen}
-                options={{
-                    headerShown: false,
-                    headerTransparent: true,
-                    headerTitle: null,
-                    headerTintColor: '#fff',
-                }}
-            />
-            <Stack.Screen
-                name="AccountVerified"
-                component={AccountVerified}
-                options={{
-                    headerShown: false,
-                    headerTransparent: true,
-                    headerTitle: null,
-                    headerTintColor: '#fff',
-                }}
-            />
-            <Stack.Screen
                 name="TransportScreen"
                 component={TransportScreen}
                 options={{
@@ -141,15 +47,9 @@ const AuthNavigation = () => {
         </Stack.Navigator>
     ) : (
         <Stack.Navigator>
-                options={{
-                    headerShown: false,
-                    headerTitle: null,
-                    headerTintColor: '#fff',
-                }}
-            />
             <Stack.Screen
-                name="ProfileScreen"
-                component={ProfileScreen}
+                name="HomeScreen"
+                component={HomeScreen}
                 options={{
                     headerShown: false,
                     headerTransparent: true,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import {FontAwesome} from '@expo/vector-icons';
+// import {FontAwesome} from '@expo/vector-icons';
 import {
     Form,
     Item,
