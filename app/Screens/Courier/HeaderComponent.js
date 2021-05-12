@@ -20,7 +20,6 @@ import material from '../../utils/native-base-theme/variables/variables';
 
 const HeaderComponent = () => {
     return (
-        <StyleProvider style={getTheme(material)}>
             <Header noShadow>
                 <Left>
                     <Button transparent>
@@ -42,7 +41,6 @@ const HeaderComponent = () => {
                     </Button>
                 </Right>
             </Header>
-        </StyleProvider>
     );
 };
 
