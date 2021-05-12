@@ -25,18 +25,21 @@ import HeaderComponent from '../../Components/Header';
 import Banner from './Banner';
 import FormComponent from './container';
 
-const index = (props) => {
+const index = props => {
     return (
-            <Container style={{ backgroundColor: '#e4e4e4' }}>
-                <HeaderComponent type="courier" navigation={props.navigation}/>
-                <Banner />
-                <Content padder>
-                    <FormComponent {...props}/>
-                </Content>
-                <FooterComponent navigation={props.navigation} />
-            </Container>
+        <Container style={{ backgroundColor: '#e4e4e4' }}>
+            <HeaderComponent
+                type="courier"
+                title="Courier"
+                navigation={props.navigation}
+            />
+            <Banner />
+            <Content padder>
+                <FormComponent {...props} />
+            </Content>
+            <FooterComponent navigation={props.navigation} />
+        </Container>
     );
 };
 
 export default index;
-

@@ -1,6 +1,5 @@
 import React from 'react';
-import { createStackNavigator} from '@react-navigation/stack';
-
+import { createStackNavigator } from '@react-navigation/stack';
 
 // import SideBar from "../Screens/sidebar";
 import LoadingScreen from '../Screens/Login/LoadingScreen';
@@ -30,17 +29,14 @@ AsyncStorage.getItem('@storage_TOKEN')
     })
     .catch(err => console.log(err));
 
-
-
 const AuthNavigation = () => {
     return TOKEN == null ? (
         <Stack.Navigator>
             <Stack.Screen
-                name="TransportScreen"
-                component={TransportScreen}
+                name="LoadingScreen"
+                component={LoadingScreen}
                 options={{
                     headerShown: false,
-                    headerTransparent: true,
                     headerTitle: null,
                     headerTintColor: '#fff',
                 }}
@@ -83,4 +79,3 @@ const AuthNavigation = () => {
 };
 
 export default AuthNavigation;
-
