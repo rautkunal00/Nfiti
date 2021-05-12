@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Image, View, Dimensions, StyleSheet } from 'react-native';
 import {
     Container,
@@ -21,7 +21,7 @@ import material from '../../utils/native-base-theme/variables/variables';
 
 import HomeCard from './HomeCard';
 import FooterComponent from '../../Components/layout/FooterComponent';
-import HeaderComponent from '../../Components/layout/HeaderComponent';
+import HeaderComponent from '../../Components/Header';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
@@ -41,7 +41,7 @@ const HomeScreen = ({ navigation }) => {
     return (
         <StyleProvider style={getTheme(material)}>
             <Container>
-                <HeaderComponent navigation={navigation}/>
+                <HeaderComponent navigation={navigation} type="home" />
                 <Content padder>
                     <SliderBox
                         images={images}
