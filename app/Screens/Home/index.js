@@ -21,7 +21,7 @@ import material from '../../utils/native-base-theme/variables/variables';
 
 import HomeCard from './HomeCard';
 import FooterComponent from '../../Components/layout/FooterComponent';
-import HeaderComponent from '../../Components/Header/HeaderComponent';
+import HeaderComponent from '../../Components/Header';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 

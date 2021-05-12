@@ -73,7 +73,7 @@ const BackBtnHeader = props => {
     );
 };
 
-const IconHeader = () => {
+const IconHeader = (props) => {
     return (
         <Header noShadow>
             <Left>
@@ -82,7 +82,7 @@ const IconHeader = () => {
                 </Button>
             </Left>
             <Body>
-                <Title>Courier</Title>
+            <Title>{props.title}</Title>
             </Body>
             <Right>
                 <Button rounded primary>

@@ -20,7 +20,7 @@ import material from '../../utils/native-base-theme/variables/variables';
 
 import FooterComponent from '../../Components/layout/FooterComponent';
 // import HeaderComponent from './HeaderComponent';
-import HeaderComponent from '../../Components/Header/HeaderComponent';
+import HeaderComponent from '../../Components/Header';
 
 import Banner from './Banner';
 import FormComponent from './container';
