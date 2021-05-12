@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Transport from './FormComponent';
+import FormComponent from './FormComponent';
 import find from 'lodash/find';
 
 import { StyledIcon } from './styles';
 
-class TransportContainer extends Component {
+class FormComponentContainer extends Component {
     state = {
         pickupData: [],
         destinationData: [],
@@ -21,6 +21,15 @@ class TransportContainer extends Component {
                 type: 'textarea',
                 label: 'Type your note here...',
                 key: 'note',
+                renderRightComponent: (
+                    <StyledIcon
+                        style={{
+                            width: 15,
+                            height: 19,
+                        }}
+                        source={require('../../../assets/images/file.png')}
+                    />
+                )
             },
             {
                 parentKey: 'dateTime',
@@ -29,9 +38,7 @@ class TransportContainer extends Component {
                         type: 'date',
                         label: 'Date',
                         key: 'date',
-                        style: {
-                            marginRight: 10,
-                        },
+                        style: {marginRight: 10, marginleft: 10},
                         renderRightComponent: (
                             <StyledIcon
                                 source={require('../../../assets/images/date.png')}
@@ -42,6 +49,7 @@ class TransportContainer extends Component {
                         type: 'dropdown',
                         label: 'Time',
                         key: 'time',
+                        style: {marginRight: 10, marginleft: 10},
                         options: [
                             '01.30 - 02.00 AM',
                             '02.00 - 02.30 PM',
@@ -69,6 +77,7 @@ class TransportContainer extends Component {
                         type: 'dropdown',
                         label: 'Time',
                         key: 'time',
+                        style: {marginRight: 10, marginleft: 10},
                         options: [
                             '01.30 - 02.00 AM',
                             '02.00 - 02.30 PM',
@@ -101,14 +110,13 @@ class TransportContainer extends Component {
                         type: 'number',
                         label: 'Weight',
                         key: 'weight',
-                        style: {
-                            marginRight: 10,
-                        },
+                        style: {marginRight: 10, marginleft: 10},
                     },
                     {
                         type: 'number',
                         label: 'Size',
                         key: 'size',
+                        style: {marginRight: 10, marginleft: 10},
                     },
                 ],
             },
@@ -124,6 +132,15 @@ class TransportContainer extends Component {
                 type: 'textarea',
                 label: 'Type your note here...',
                 key: 'note',
+                renderRightComponent: (
+                    <StyledIcon
+                        style={{
+                            width: 15,
+                            height: 19,
+                        }}
+                        source={require('../../../assets/images/file.png')}
+                    />
+                )
             },
         ];
 
@@ -184,8 +201,8 @@ class TransportContainer extends Component {
     onSubmitHandler = () => {};
 
     render() {
-        return <Transport {...this} {...this.state} {...this.props} />;
+        return <FormComponent {...this} {...this.state} {...this.props} />;
     }
 }
 
-export default TransportContainer;
+export default FormComponentContainer;

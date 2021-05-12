@@ -6,6 +6,7 @@ import get from 'lodash/get';
 import Input from '../../../Components/Input';
 import Dropdown from '../../../Components/Dropdown';
 import DatePicker from '../../../Components/DatePicker';
+import Textarea from '../../../Components/TextArea';
 
 import {
     Form,
@@ -17,7 +18,6 @@ import {
     Col,
     H3,
     Card,
-    Textarea,
 } from 'native-base';
 
 const FieldPreview = props => {
@@ -34,6 +34,7 @@ const FieldPreview = props => {
                 <Input
                     placeholder={get(field, `label`)}
                     onChangeHandler={fieldUpdateHandler}
+                    elevation={get(field, `elevation`)}
                 />
             );
 
@@ -42,6 +43,7 @@ const FieldPreview = props => {
                 <Input
                     placeholder={get(field, `label`)}
                     onChangeHandler={fieldUpdateHandler}
+                    elevation={get(field, `elevation`)}
                     inputOptions={{
                         style: {
                             width: '100%',
@@ -56,6 +58,7 @@ const FieldPreview = props => {
                 <DropdownWrapper>
                     <Dropdown
                         onChangeHandler={fieldUpdateHandler}
+                        elevation={get(field, `elevation`)}
                         dropdownOptions={get(field, `options`)}
                         placeholder={get(field, `label`)}
                         defaultOptions={{
@@ -71,6 +74,7 @@ const FieldPreview = props => {
             return (
                 <DatePicker
                     mode="date"
+                    elevation={get(field, `elevation`)}
                     placeholder="Date"
                     value={field.value}
                     onChangeHandler={fieldUpdateHandler}
@@ -81,6 +85,7 @@ const FieldPreview = props => {
             return (
                 <Textarea
                     rowSpan={3}
+                    elevation={get(field, `elevation`)}
                     style={{
                         paddingTop: 15,
                         paddingLeft: 20,
@@ -89,6 +94,7 @@ const FieldPreview = props => {
                     placeholderTextColor="#5a5858"
                     placeholder={get(field, `label`)}
                     onChangeHandler={fieldUpdateHandler}
+                    renderRightComponent={field.renderRightComponent}
                 />
             );
 

@@ -15,7 +15,7 @@ import {
 } from 'native-base';
 import styled from 'styled-components/native';
 import Input from '../../Components/Input';
-import DatePicker from '../../Components/DatePicker';
+import CheckBox from '../../Components/Checkbox';
 
 import FieldPreview from './components/FieldPreview/';
 import Button from '../../Components/Button';
@@ -23,9 +23,6 @@ import RadioButton from '../../Components/RadioButton/GridRadio';
 
 import {
     PickupWrapper,
-    StyledImage,
-    Wrapper,
-    StyledMap,
     StyledHeading,
     StyledField,
     FormWrapper,
@@ -34,7 +31,6 @@ import {
 import { map } from 'lodash';
 
 const FormComponent = props => {
-    const [date, setDate] = useState(new Date());
     const {
         pickupData,
         handleFieldChange,
@@ -79,7 +75,8 @@ const FormComponent = props => {
             <Form>
                 <Item
                     rounded
-                    style={{ borderRadius: 20, backgroundColor: '#fff' }}
+                    style={{ borderRadius: 20, backgroundColor: '#fff', width: 340 }}
+                    elevation={10}
                 >
                     <Icon name="search" />
                     <Input placeholder="Sending something.." />
@@ -89,7 +86,7 @@ const FormComponent = props => {
             </Form>
             <FormWrapper>
                 <StyledHeading>From</StyledHeading>
-                <PickupWrapper elevation={10}>
+                <PickupWrapper>
                     {map(pickupData, (eachField, index) => {
                         return (
                             <StyledField key={index}>
@@ -106,6 +103,7 @@ const FormComponent = props => {
                                                             ...eachItem.style,
                                                         }}
                                                         key={itemIndex}
+                                                        elevation={10}
                                                     >
                                                         <FieldPreview
                                                             handleFieldChange={
@@ -123,6 +121,7 @@ const FormComponent = props => {
                                     </FlexWrapper>
                                 ) : (
                                     <FieldPreview
+                                        elevation={10}
                                         parentKey={null}
                                         handleFieldChange={handleFieldChange}
                                         field={eachField}
@@ -135,7 +134,7 @@ const FormComponent = props => {
             </FormWrapper>
             <FormWrapper>
                 <StyledHeading>To</StyledHeading>
-                <PickupWrapper elevation={10}>
+                <PickupWrapper>
                     {map(destinationData, (eachField, index) => {
                         return (
                             <StyledField key={index}>
@@ -177,8 +176,12 @@ const FormComponent = props => {
                             </StyledField>
                         );
                     })}
+                    <CheckBox placeholder="Accept Terms & Conditions"/>
                 </PickupWrapper>
-                <Button title="Submit Request" onClickHandler={onSubmitHandler} />
+                <Button
+                    title="Submit Request"
+                    onClickHandler={onSubmitHandler}
+                />
             </FormWrapper>
         </>
     );
@@ -196,7 +199,6 @@ const StyledCol = styled.View`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    ${'' /* background-color: red; */}
 `;
 
 const StyledRow = styled.View`

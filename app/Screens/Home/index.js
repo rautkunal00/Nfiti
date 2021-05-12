@@ -13,7 +13,7 @@ import {
     Card,
 } from 'native-base';
 
-// import { SliderBox } from 'react-native-image-slider-box';
+import { SliderBox } from 'react-native-image-slider-box';
 // import { Picker } from '@react-native-picker/picker';
 // import { Picker } from '@react-native-community/picker';
 import getTheme from '../../utils/native-base-theme/components';
@@ -43,7 +43,7 @@ const HomeScreen = ({ navigation }) => {
             <Container>
                 <HeaderComponent navigation={navigation}/>
                 <Content padder>
-                    {/* <SliderBox
+                    <SliderBox
                         images={images}
                         sliderBoxHeight={200}
                         onCurrentImagePressed={index =>
@@ -81,7 +81,7 @@ const HomeScreen = ({ navigation }) => {
                         }}
                         imageLoadingColor="#2196F3"
                         parentWidth={WINDOW_WIDTH - 20}
-                    /> */}
+                    />
                     <Grid>
                         <Row>
                             <Col>

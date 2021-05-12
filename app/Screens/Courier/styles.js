@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { Input, Item } from 'native-base';
+import theme from '../../styles/themes'
 
 export const Wrapper = styled.ScrollView`
     /* display: flex; */
@@ -20,18 +21,15 @@ export const StyledMap = styled.Image`
 export const StyledHeading = styled.Text`
     font-size: 15px;
     margin: 45px 0 20px 20px;
-    color: ${props => props.theme.COLOR.BLACK_TEXT};
+    color: ${theme.COLOR.BLACK_TEXT};
     font-weight: bold;
 `;
 
 export const FromFormWrapper = styled.View``;
 
 export const PickupWrapper = styled.View`
-    background-color: ${props => props.theme.COLOR.BACKGROUND_COLOR};
     border-radius: 25px;
-    padding: 15px;
-    width: 94%;
-    margin: 0 auto;
+    width: 100%;
 `;
 
 export const StyledInput = styled(Input)``;
@@ -49,7 +47,7 @@ export const StyledItem = styled(Item)`
 export const FlexWrapper = styled.View`
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-evenly;
 `;
 
 export const DropdownWrapper = styled.View`

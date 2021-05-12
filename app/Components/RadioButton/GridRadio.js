@@ -37,7 +37,7 @@ export default class App extends Component {
             <StyledGrid>
                 {map(PROP, (eachField, index) => {
                     return (
-                        <StyledCol>
+                        <StyledCol key={index}>
                             <StyledRow>
                                 <StyledRadio selected={index==2} />
                             </StyledRow>
