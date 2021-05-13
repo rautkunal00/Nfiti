@@ -13,6 +13,7 @@ import ForgotPassword from '../Screens/Login/ForgotPassword';
 import AccountVerified from '../Screens/Login/AccountVerified';
 
 import HomeScreen from '../Screens/Home';
+import Register from '../Screens/Home/Register';
 import ProfileScreen from '../Screens/Profile';
 import SuccessPopup from '../Components/SuccessPopup';
 import TransportScreen from '../Screens/Transport/container';

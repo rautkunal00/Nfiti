@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, View, Dimensions, StyleSheet } from 'react-native';
 import {
     Container,
@@ -22,6 +22,7 @@ import material from '../../utils/native-base-theme/variables/variables';
 import HomeCard from './HomeCard';
 import FooterComponent from '../../Components/layout/FooterComponent';
 import HeaderComponent from '../../Components/Header';
+import Register from './Register';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
@@ -29,6 +30,7 @@ const HomeScreen = ({ navigation }) => {
     const pressHandler = (screenName = 'ProfileScreen') => {
         navigation.push(screenName);
     };
+    const [modalVisible, setModalVisible] = useState(false);
 
     const TransportIcon = require('../../../assets/images/Transport.png');
     const CourierIcon = require('../../../assets/images/Courier.png');
@@ -120,6 +122,7 @@ const HomeScreen = ({ navigation }) => {
                             </Col>
                         </Row>
                     </Grid>
+                    <Register modalVisible={modalVisible}/>
                 </Content>
                 <FooterComponent navigation={navigation} />
             </Container>
