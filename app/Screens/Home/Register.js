@@ -8,7 +8,7 @@ import {
     TextInput,
 } from 'react-native';
 import Dropdown from '../../Components/Dropdown';
-import { Button, Text } from 'native-base';
+import { Button, Text, Item, Input } from 'native-base';
 import Colors from '../../styles/colors';
 import { DropdownWrapper } from './styles';
 import Country from '../../utils/Country';
@@ -26,40 +26,38 @@ const Register = props => {
                 animationType="slide"
                 transparent={true}
                 visible={modalVisible}
-                onRequestClose={() => {
-                    Alert.alert('Modal has been closed.');
-                }}
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>
                             Register Your Number
                         </Text>
-                        <DropdownWrapper>
-                            <Dropdown
-                                style={styles.input}
-                                dropdownOptions={option}
-                                placeholder="Country code"
-                                value={option.calling_code}
-                            />
-                        </DropdownWrapper>
-                        <SafeAreaView>
-                            <TextInput
-                                style={styles.input}
+                        <Item style={{width:250}}>
+                                <Dropdown
+                                    style={styles.input}
+                                    dropdownOptions={option}
+                                    placeholder="Country code"
+                                    value={option.calling_code}
+                                />
+                        </Item>
+                        <Item style={{width:250}}>
+                            <Input
+                                placeholderTextColor='#CCC'
                                 onChangeText={onChangeNumber}
                                 value={number}
                                 placeholder="Your Phone Number"
                                 keyboardType="numeric"
                             />
-                        </SafeAreaView>
-                        <Button
-                            primary
-                            rounded
-                            onClickHandler={onSubmitHandler}
-                            style={{flex:1}}
-                        >
-                            <Text>Send OTP</Text>
-                        </Button>
+                        </Item>
+                        <Item style={{width:250}}>
+                            <Button
+                                style={styles.openButton}
+                                primary
+                                onClickHandler={onSubmitHandler}
+                            >
+                                <Text>Send OTP</Text>
+                            </Button>
+                        </Item>
                     </View>
                 </View>
             </Modal>
@@ -90,11 +88,8 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     openButton: {
-        width: 249,
-        height: 41,
-        backgroundColor: '#F194FF',
-        padding: 10,
-        elevation: 2,
+        width: 250,
+        marginTop: 26,
     },
     textStyle: {
         color: 'white',
@@ -106,10 +101,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     input: {
-        width: 249,
-        height: 20,
-        marginTop: 23,
-        borderBottomWidth: 0.5,
+        width: 250,
     },
 });
 export default Register;

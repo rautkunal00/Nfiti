@@ -30,7 +30,7 @@ const HomeScreen = ({ navigation }) => {
     const pressHandler = (screenName = 'ProfileScreen') => {
         navigation.push(screenName);
     };
-    const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisible, setModalVisible] = useState(true);
 
     const TransportIcon = require('../../../assets/images/Transport.png');
     const CourierIcon = require('../../../assets/images/Courier.png');
