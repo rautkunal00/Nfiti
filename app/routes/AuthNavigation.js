@@ -18,6 +18,7 @@ import ProfileScreen from '../Screens/Profile';
 import SuccessPopup from '../Components/SuccessPopup';
 import TransportScreen from '../Screens/Transport/container';
 import CourierScreen from '../Screens/Courier';
+import PartnerSignup from '../Screens/Signup/container';
 
 import AsyncStorage from '@react-native-community/async-storage';
 const Stack = createStackNavigator();
@@ -45,6 +46,16 @@ const AuthNavigation = () => {
         </Stack.Navigator>
     ) : (
         <Stack.Navigator>
+            <Stack.Screen
+                name="PartnerSignup"
+                component={PartnerSignup}
+                options={{
+                    headerShown: false,
+                    headerTransparent: true,
+                    headerTitle: null,
+                    headerTintColor: '#fff',
+                }}
+            />
             <Stack.Screen
                 name="HomeScreen"
                 component={HomeScreen}
