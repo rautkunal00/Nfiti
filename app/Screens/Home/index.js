@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createRef, useEffect } from 'react';
 import { Image, View, Dimensions, StyleSheet } from 'react-native';
 import {
     Container,
@@ -12,7 +12,9 @@ import {
     Root,
     Card,
 } from 'native-base';
+import { map } from 'lodash';
 
+import { BlurView } from 'expo-blur';
 import { SliderBox } from 'react-native-image-slider-box';
 // import { Picker } from '@react-native-picker/picker';
 // import { Picker } from '@react-native-community/picker';
@@ -30,10 +32,68 @@ const HomeScreen = ({ navigation }) => {
     const pressHandler = (screenName = 'ProfileScreen') => {
         navigation.push(screenName);
     };
-    const [modalVisible, setModalVisible] = useState(true);
 
+    function OTPSubmitHandler(pageChange, page) {
+        page == 3 ? setModalVisible(false) : pageChange(page);
+    }
+
+    useEffect(() => {});
+
+    const [modalVisible, setModalVisible] = useState(true);
     const TransportIcon = require('../../../assets/images/Transport.png');
     const CourierIcon = require('../../../assets/images/Courier.png');
+
+    const HomcardList = [
+        [
+            {
+                url: CourierIcon,
+                title: 'Courier',
+                onPress: 'CourierScreen',
+            },
+            {
+                url: TransportIcon,
+                title: 'Transport',
+                onPress: 'TransportScreen',
+            },
+        ],
+        [
+            {
+                url: null,
+                title: 'Taxi/cab',
+                onPress: 'CourierScreen',
+            },
+            {
+                url: null,
+                title: 'Buy',
+                onPress: 'TransportScreen',
+            },
+        ],
+        [
+            {
+                url: null,
+                title: 'Order',
+                onPress: 'CourierScreen',
+            },
+            {
+                url: null,
+                title: 'Hire',
+                onPress: 'TransportScreen',
+            },
+        ],
+        [
+            {
+                url: null,
+                title: 'Call Emergency',
+                onPress: 'CourierScreen',
+            },
+            {
+                url: null,
+                title: 'Job',
+                onPress: 'TransportScreen',
+            },
+        ],
+    ];
+
     const images = [
         require('../../../assets/images/homeSlider1.png'),
         'https://source.unsplash.com/1024x768/?water',
@@ -85,46 +145,46 @@ const HomeScreen = ({ navigation }) => {
                         parentWidth={WINDOW_WIDTH - 20}
                     />
                     <Grid>
-                        <Row>
-                            <Col>
-                                <HomeCard
-                                    url={CourierIcon}
-                                    title="Courier"
-                                    onPress={'CourierScreen'}
-                                    navigation={navigation}
-                                />
-                            </Col>
-                            <Col>
-                                <HomeCard
-                                    url={TransportIcon}
-                                    title="Transport"
-                                    onPress={'TransportScreen'}
-                                    navigation={navigation}
-                                />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <HomeCard
-                                    url={CourierIcon}
-                                    title="Profile"
-                                    onPress={'ProfileScreen'}
-                                    navigation={navigation}
-                                />
-                            </Col>
-                            <Col>
-                                <HomeCard
-                                    url={TransportIcon}
-                                    title="Login"
-                                    onPress={'HomeScreen'}
-                                    navigation={navigation}
-                                />
-                            </Col>
-                        </Row>
+                        {map(HomcardList, (eachField, index) => {
+                            console.log(eachField[0].url);
+                            return (
+                                <Row key={index}>
+                                    <Col>
+                                        <HomeCard
+                                            url={eachField[0].url}
+                                            title={eachField[0].title}
+                                            onPress={eachField[0].onPress}
+                                            navigation={navigation}
+                                        />
+                                    </Col>
+                                    <Col>
+                                        <HomeCard
+                                            url={eachField[1].url}
+                                            title={eachField[1].title}
+                                            onPress={eachField[1].onPress}
+                                            navigation={navigation}
+                                        />
+                                    </Col>
+                                </Row>
+                            );
+                        })}
                     </Grid>
-                    <Register modalVisible={modalVisible}/>
+                    <Register
+                        modalVisible={modalVisible}
+                        onSubmitHandler={OTPSubmitHandler}
+                    />
                 </Content>
                 <FooterComponent navigation={navigation} />
+                {modalVisible && (
+                    <BlurView
+                        intensity={50}
+                        tint="dark"
+                        style={[
+                            StyleSheet.absoluteFill,
+                            styles.nonBlurredContent,
+                        ]}
+                    ></BlurView>
+                )}
             </Container>
         </StyleProvider>
     );
@@ -132,14 +192,13 @@ const HomeScreen = ({ navigation }) => {
 
 export default HomeScreen;
 
-// const styles = StyleSheet.create({
-//     container:{
-//         flex:1,
-//         justifyContent:'center',
-//         alignContent:'center'
-//     }
-// })
-//         justifyContent: 'center',
-//         alignContent: 'center',
-//     },
-// });
+const styles = StyleSheet.create({
+    blurredImage: {
+        width: 192,
+        height: 500,
+    },
+    nonBlurredContent: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});

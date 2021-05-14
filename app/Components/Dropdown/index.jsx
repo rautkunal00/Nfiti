@@ -28,6 +28,8 @@ const Dropdown = props => {
         defaultOptions,
         renderRightComponent,
         value,
+        fontSize,
+        width
     } = props;
     return (
         <ModalDropdown
@@ -38,9 +40,10 @@ const Dropdown = props => {
                 backgroundColor: 'white',
                 ...padding(12, 18, 12, 18),
                 borderRadius: 10,
+                width: width
             }}
             textStyle={{
-                fontSize: 12,
+                fontSize: fontSize? fontSize : 12,
                 color: props.theme.COLOR.TEXT_COLOR,
             }}
             dropdownStyle={{

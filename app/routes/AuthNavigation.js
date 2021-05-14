@@ -26,7 +26,7 @@ const TOKEN = 5;
 AsyncStorage.getItem('@storage_TOKEN')
     .then(TOKEN => {
         TOKEN = TOKEN;
-        console.log(TOKEN);
+        // console.log(TOKEN);
     })
     .catch(err => console.log(err));
 
