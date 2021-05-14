@@ -52,7 +52,7 @@ const Register = props => {
                         <Item style={{width:250}}>
                             <Button
                                 style={styles.openButton}
-                                primary
+                                block
                                 onClickHandler={onSubmitHandler}
                             >
                                 <Text>Send OTP</Text>
@@ -64,6 +64,7 @@ const Register = props => {
         </View>
     );
 };
+
 const styles = StyleSheet.create({
     centeredView: {
         flex: 1,
@@ -102,6 +103,7 @@ const styles = StyleSheet.create({
     },
     input: {
         width: 250,
+        
     },
 });
 export default Register;
