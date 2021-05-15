@@ -1,5 +1,4 @@
-export const PRIMARY = '#1779ba';
-export const SECONDARY = '#767676';
+export const PRIMARY = '#073259';
 export const WHITE = '#FFFFFF';
 export const BLACK = '#000000';
 
@@ -9,6 +8,8 @@ export const WARNING = '#ffae00';
 export const ALERT = '#cc4b37';
 
 // GRAYSCALE
-export const GRAY_LIGHT = '#e6e6e6';
-export const GRAY_MEDIUM = '#cacaca';
-export const GRAY_DARK = '#8a8a8a';
+export const GRAY_LIGHT = '#f3f2f2';
+export const GRAY_MEDIUM = '#e4e4e4';
+export const GRAY_DARK = '#383839';
+export const GRAY_DARK_2 = '#5a5858';
+export const SHADOW = '#29000000';
